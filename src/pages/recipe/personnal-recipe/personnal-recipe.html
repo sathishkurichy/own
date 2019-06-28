@@ -1,0 +1,10 @@
+<div class="personnal-recipe-page">
+    <div class="recipe-item-container">
+        <div class="recipe-item">
+            <recipe-item-component-add (click)="onCreateNewRecipe()"></recipe-item-component-add>
+        </div>
+        <div class="recipe-item" *ngFor="let recipe of recipes">
+            <recipe-item-component-website [recipe]="recipe" (click)="onSelectRecipePerso(recipe.id)"></recipe-item-component-website>
+        </div>
+    </div>
+</div>

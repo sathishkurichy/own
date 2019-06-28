@@ -1,0 +1,8 @@
+{
+  "realm": "beaba_dev",
+  "auth-server-url": "https://auth.beaba.com/auth",
+  "ssl-required": "external",
+  "resource": "beaba-mobile",
+  "public-client": true,
+  "confidential-port": 0
+}

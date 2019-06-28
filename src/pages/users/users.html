@@ -1,0 +1,49 @@
+<div class="users-header">
+  <button class="users-button danger-button" (click)="exportToCSVClick()" [disabled]="users.length == 0">{{ 'WEBSITE.USERS.BUTTON_EXPORT_CSV' | translate }}</button>
+</div>
+<ngx-datatable
+    #myTable
+    class="material table-container"
+    [selectionType]="false"
+    [rows]="users"
+    [columns]="columns"
+    [sortType]="'multi'"
+    [columnMode]="'force'"
+    [headerHeight]="50"
+    [footerHeight]="50"
+    [rowHeight]="50"
+    [scrollbarV]="true"
+    >
+    <ng-template #detailTemplate let-row="row" let-value="value" let-i="index" let-rowIndex="rowIndex">
+      <button (click)="toggleExpandRow(row, rowIndex)" [disabled]="!row.keycloakId && (!row.isAnonym || !row.isEnable)">{{ 'WEBSITE.COMMON.DETAIL' | translate }}</button>
+    </ng-template>
+    <ngx-datatable-row-detail [rowHeight]="100">
+      <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+        <!--<div class="loader-container" *ngIf="loading">-->
+            <!--<ion-spinner></ion-spinner>-->
+        <!--</div>-->
+          <div class="loader-container">
+        <button *ngIf="loading" class="spinner"> <fa-icon [icon]="faSpinner" [spin]="true" size="2x" ></fa-icon> </button>
+
+        <button class="users-button danger-button" *ngIf="!loading && !errorLoadingKUser && currentUserEnable && !currentUserIsAnonyme" (click)="toggleUserState(row)">{{ 'WEBSITE.COMMON.DESACTIVATE' | translate }}</button>
+        <button class="users-button success-button" *ngIf="!loading && !errorLoadingKUser && !currentUserEnable && !currentUserIsAnonyme" (click)="toggleUserState(row)">{{ 'WEBSITE.COMMON.ACTIVATE' | translate }}</button>
+        <button class="users-button danger-button" *ngIf="!loading && !errorLoadingKUser && !currentUserIsAnonyme" (click)="anonymizeUser(row)">{{ 'WEBSITE.USERS.ACTION.ANONYMIZE' | translate }}</button>
+          <div class="users-checkbox">
+            <label>{{ 'WEBSITE.COMMON.USER.IS_PARENT_REFERENT' | translate}}</label>
+            <input type="checkbox" [(formControl)]="isParentReferentFormControl" (click)="addOrRemoveRoleParentReferent(row)"/>
+          </div>
+          </div>
+        <div class="ion-card" *ngIf="!loading && errorLoadingKUser">
+          <div class="ion-card-content">{{ 'ERROR_MESSAGE.DEFAULT' | translate }}</div>
+        </div>
+
+      </ng-template>
+    </ngx-datatable-row-detail>
+  </ngx-datatable>
+  <div class="loader-container" *ngIf="loading || loadingUsers">
+    <div class="linear-container">
+      <!--<ion-spinner></ion-spinner>-->
+      <button class="spinner"> <fa-icon [icon]="faSpinner" [spin]="true" size="2x" ></fa-icon> </button>
+      <h3>{{ 'WEBSITE.COMMON.LOADING' | translate }}</h3>
+    </div>
+</div>

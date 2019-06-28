@@ -1,0 +1,56 @@
+<form class="step-detail-form" [formGroup]="stepForm" [ngSwitch]="_stepType">
+    <div class="ingredient-select flex-column" *ngIf="needIngredient">
+        <p class="page-nav-header-title">{{ 'RECIPE_MANAGEMENT.CREATE_RECIPE.SELECT_INGREDIENT_LABEL' | translate }}</p>
+        <div class="ingredient-list flex-column">
+            <div class="ingredient-container" *ngFor="let ingredient of ingredients; let index = index">
+                <input [id]="'ingredient' + index" formControlName="ingredient" type="radio" class="radio" [value]="ingredient">
+                <label [for]="'ingredient' + index" class="label">
+                    <div class="text-container flex-row">
+                        <!-- SHOW SIGLE ngIf -->
+                        <p class="ingredient-quantity cut-text" *ngIf="ingredient.unit.sigle.length > 0">{{ingredient.quantity}}{{ingredient.unit.sigle}}</p>
+                        <p class="ingredient-quantity cut-text" *ngIf="ingredient.unit.sigle.length < 1">{{ingredient.quantity}}{{ingredient.unit.name}}</p>
+                        <p class="ingredient-name cut-text">{{ingredient.ingredient.name}}</p>
+                    </div>
+                </label>
+            </div>
+            <div class="ingredient-container" *ngIf="_stepType == 4">
+                <input id="basket" formControlName="ingredient" type="radio" class="radio" [value]="0">
+                <label for="basket" class="label">
+                    <div class="text-container flex-row">
+                        <p class="ingredient-name cut-text">{{ 'RECIPE_MANAGEMENT.CREATE_RECIPE.BASKET_CONTENT' | translate }}</p>
+                    </div>
+                </label>
+            </div>
+        </div>
+        <div class="quantity-selection" *ngIf="stepForm.controls.ingredient.value">
+            <p class="quantity-label">{{'RECIPE_MANAGEMENT.CREATE_RECIPE.QUANTITY' | translate}}</p>
+            <div class="quantity-input flex-row">
+                <input [formControl]="ingredientQuantity" type="number" (keypress)="_keyPress($event)" min="0">
+                <p class="ingredient-quantity cut-text" *ngIf="stepForm.controls.ingredient.value.unit.sigle.length > 0"> {{stepForm.controls.ingredient.value.unit.sigle}}</p>
+                <p class="ingredient-quantity cut-text" *ngIf="stepForm.controls.ingredient.value.unit.sigle.length < 1"> {{stepForm.controls.ingredient.value.unit.name}}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="step-details">
+        <div class="mix-step" *ngSwitchCase="1">
+            <select class="texture-select" formControlName="mixingTexture">
+                <option disabled selected [value]="null">{{ 'RECIPE_MANAGEMENT.CREATE_RECIPE.WANTED_TEXTURE' | translate }}</option>
+                <option *ngFor="let texture of textures" [value]="texture.dishTypeId">{{texture.name | translate}}</option>
+            </select>
+        </div>
+
+        <div class="bake-step" *ngSwitchCase="2">
+            <p class="step-label">{{ 'RECIPE_MANAGEMENT.CREATE_RECIPE.BAKING_DURATION' | translate }}</p>
+            <input type="number" class="baking-duration-input" formControlName="bakingDuration" (keypress)="_keyPress($event)" min="0">
+        </div>
+
+        <div class="free-step" *ngSwitchCase="3">
+            <p class="step-label">{{ 'RECIPE_MANAGEMENT.CREATE_RECIPE.INSTRUCTION' | translate }}</p>
+        </div>
+
+        <div class="instruction">
+            <textarea formControlName="freeStepInstruction"></textarea>
+        </div>
+    </div>
+</form>

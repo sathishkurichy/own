@@ -1,0 +1,10 @@
+<div class="favorite-recipe-page">
+    <div class="recipe-item-container recipe-item-container-alt">
+        <div *ngIf="noFavorite" class="no-favs">
+            <p>{{'WEBSITE.RECIPE.NO_FAVORITE' | translate}}</p>
+        </div>
+        <div class="recipe-item" *ngFor="let recipe of recipes">
+            <recipe-item-component-website [recipe]="recipe" (click)="onSelectRecipe(recipe.id)"></recipe-item-component-website>
+        </div>
+    </div>
+</div>

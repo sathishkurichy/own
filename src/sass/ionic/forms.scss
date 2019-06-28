@@ -1,0 +1,291 @@
+// ERROR MESSAGE //
+div.error {
+    font-weight: bold;
+    margin: 4px; //background-color: rgba($RED_BEABA,0.9);
+    border-radius: 6px;
+    p.error-message {
+        color: rgba(#f66, 0.9);
+    }
+}
+
+// CHILD CIRCLE //
+.child-circle {
+    margin: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background-color: $TEAL_BEABA;
+}
+
+.child-circle-active {
+    margin: 0;
+    border: solid 3px white;
+    width: 70px;
+    height: 70px;
+}
+
+.child-image {
+    width: 80%!important;
+    height: 80%!important;
+}
+
+// CHILD CIRCLE //
+// SWITCH BUTTON //
+.onoffswitch {
+    position: relative;
+    width: 90px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.onoffswitch-checkbox {
+    display: none;
+}
+
+label.checkbox-label {
+    word-wrap: break-word;
+    max-width: 165px;
+}
+
+.form-div {
+    display: flex;
+    align-content: space-between;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+
+.onoffswitch-label {
+    text-align: center;
+    display: block;
+    overflow: hidden;
+    cursor: pointer;
+    height: $SWITCH_HEIGHT;
+    padding: 0;
+    line-height: $SWITCH_HEIGHT;
+    border-radius: $SWITCH_HEIGHT;
+    background-color: rgba(#ffffff, 0.5);
+    transition: background-color 0.3s ease-in;
+    transition: color 0.3s ease-in;
+}
+
+.onoffswitch-label:before {
+    content: "Off";
+    color: $GRAY;
+    display: block;
+    width: 41px;
+    height: 41px;
+    margin: 0px;
+    background: #FFFFFF;
+    position: absolute;
+    top: 2px;
+    bottom: 0;
+    right: 46px;
+    border-radius: $SWITCH_HEIGHT;
+    transition: all 0.3s ease-in 0s;
+    font-weight: 600;
+    font-size: 0.9em;
+}
+
+.onoffswitch-checkbox:checked+.onoffswitch-label:before {
+    content: "On";
+    color: white;
+    right: 2px;
+    background-color: $TEAL_BEABA;
+}
+
+@media screen and (min-width: 768px) {
+    .onoffswitch {
+        width: 110px;
+    }
+    .form-div {
+        margin-top: 5px;
+    }
+    .onoffswitch-label {
+        height: $SWITCH_HEIGHT_TABLET;
+        line-height: $SWITCH_HEIGHT_TABLET;
+        border-radius: $SWITCH_HEIGHT_TABLET;
+    }
+    .onoffswitch-label:before {
+        font-weight: 600;
+        font-size: 0.9em;
+        width: 54px;
+        height: 54px;
+        top: 3px;
+        border-radius: $SWITCH_HEIGHT_TABLET;
+        right: 52px;
+    }
+    .onoffswitch-checkbox:checked+.onoffswitch-label:before {
+        right: 3px;
+    }
+}
+
+// SWITCH BUTTON //
+.beaba-text-input-disabled {
+    background-color: rgba(255, 255, 255, 0.5)!important;
+    img,
+    ion-icon,
+    div {
+        opacity: 0.6;
+    }
+}
+
+.beaba-text-input {
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 42px;
+    background-color: rgba(255, 255, 255, 0.75);
+    border-radius: 50px;
+    font-size: 1.1em;
+    max-width: $MAX_WIDTH_TABLET;
+    img {
+        margin-left: 18px;
+        width: 16px;
+        height: auto;
+    }
+    ion-icon {
+        margin-left: 18px;
+    }
+    input.form-control,
+    ion-input {
+        color: $GRAY!important;
+        font-size: 0.83em;
+        font-weight: 700;
+        height: 100%;
+        width: calc(100% - 20px);
+        margin-left: 10px;
+        margin-right: 10px;
+        border: none;
+        background-color: unset;
+    }
+    ion-input {
+        height: 100%;
+        margin: 0 10px;
+    }
+     ::-webkit-input-placeholder {
+        color: $LIGHT_GRAY;
+    }
+    div.vertical-line {
+        margin-right: 5px;
+        margin-left: 15px;
+        height: 65%;
+        width: 1.3px;
+        background-color: $DARK_GRAY;
+    }
+    ion-spinner.input-spinner {
+        right: 15px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    div.beaba-text-input {
+        height: 60px;
+        img.input-icon {
+            width: 25px;
+            height: auto;
+        }
+        input.form-control,
+        ion-input {
+            font-size: 1.1em;
+        }
+         ::-webkit-input-placeholder {
+            font-size: 1.1em;
+        }
+        div {
+            width: 1.6px;
+        }
+    }
+}
+
+// BUTTON DIV //
+.btn-beaba {
+    background-color: $LIME_GREEN_BEABA;
+    height: 50px;
+    width: 100%;
+    max-width: $MAX_WIDTH_TABLET;
+    border-radius: 5px;
+    margin: 15px auto;
+    display: flex; // flex-box properties
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    position: relative;
+    .btn-img {
+        height: 24px;
+        width: auto;
+        position: absolute;
+        left: 20px;
+        top: 13px;
+    }
+    .btn-title {
+        font-size: 1.3em;
+        font-weight: bold;
+        color: $WHITE;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .btn-beaba {
+        height: 70px;
+        border-radius: 1em;
+        .btn-img {
+            top: 18px;
+            left: 25px;
+            height: 30px;
+        }
+        .btn-title {
+            font-size: 2em;
+        }
+    }
+}
+
+.btn-fix::after {
+    content: " "
+}
+
+// BUTTON DIV //
+// SELECT INPUT //
+.text_input_rounded_white {
+    text-align: center;
+    background-color: rgba(#ffffff, 0.5);
+    color: #606060;
+    border-radius: 100px;
+}
+
+// SELECT INPUT //
+// BEABA SELECT //
+ion-item.beaba-select {
+    border-radius: $BORDER_RADIUS;
+    background-color: $WHITE!important;
+    margin-top: 15px;
+    box-shadow: 0.5px 0.5px 4px #aaa;
+    ion-select {
+        font-weight: 800;
+        max-width: unset;
+        width: 100%;
+        div.select-icon {
+            display: none;
+        }
+    }
+    ion-label {
+        margin: 0;
+        position: absolute;
+        min-width: 20px;
+        right: 0;
+        margin-right: 20px;
+        img {
+            height: 13px;
+        }
+    }
+}
+
+// BEABA SELECT //

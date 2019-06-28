@@ -1,0 +1,41 @@
+<div class="create-step-component flex-column" id="steps" *ngIf="true">
+        <!-- if !ingredients.length > 0 -->
+    <p class="steps">{{'RECIPE_MANAGEMENT.CREATE_RECIPE.RECIPE_STEP' | translate}}</p>
+    <p class="dark-label-title" *ngIf="!steps.length > 0">{{'RECIPE_MANAGEMENT.CREATE_RECIPE.NO_RECIPE_STEP_YET' | translate}}</p>
+    <div class="step-list flex-column" *ngIf="steps.length > 0">
+        <div class="step-container" *ngFor="let step of steps">
+            <div *ngIf="step" class="step flex-row">
+                <p class="step-quantity cut-text">{{step.stepIndex}}</p>
+                <p class="step-name cut-text" *ngIf="step.freeStepInstruction">{{step.freeStepInstruction | translate }}</p>
+                <button class="remove-circle" (click)="openMenu(step.stepIndex)" [disabled]="creatingStep || disabledButton">
+                    <fa-icon [icon]="faEllipsisV"></fa-icon>
+                </button>
+            </div>
+            <div class="options flex-row" *ngIf="optionMenu == step.stepIndex">
+                <button [disabled]="disabledButton" [disabled]="step.stepIndex == 1" class="option-button" (click)="optionUp(step.stepIndex)">
+                    <img class="icon" src="assets/img/arrow-up-red.png"/> 
+                </button>
+                <button [disabled]="disabledButton" [disabled]="step.stepIndex == steps.length"  class="option-button" (click)="optionDown(step.stepIndex)">
+                    <img class="icon" src="assets/img/arrow-down-red.png"/> 
+                </button>
+                <button [disabled]="disabledButton" class="option-button" (click)="optionEdit(step.stepIndex)">
+                    <img class="icon-big" src="assets/img/edit-red-icon.png"/>
+                </button>
+                <button [disabled]="disabledButton" class="option-button" (click)="optionDelete(step.stepIndex)">
+                    <img class="icon-big" src="assets/img/trash-red.png"/> 
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <button class="add-step" (click)="addStep()" [disabled]="creatingStep || ingredients.length == 0 || disabledButton">{{ 'RECIPE_MANAGEMENT.CREATE_RECIPE.ADD_STEP' | translate }}</button>
+
+    <step-select [stepForm]="stepForm" *ngIf="creatingStep && !stepToEditIndex"></step-select>
+
+    <step-details *ngIf="stepForm.value && stepForm.valid && creatingStep" [step]="stepForm.value" [ingredients]="ingredients" [stepForm]="stepDetailForm"></step-details>
+
+    <div class="flex-row" *ngIf="creatingStep">
+        <button class="confirm-button action-button" [disabled]="!stepDetailForm || !stepDetailForm.valid || !stepForm || !stepForm.valid || disabledButton" (click)="createStep()">{{'RECIPE_MANAGEMENT.CREATE_RECIPE.FINISH_STEP' | translate}}</button>
+        <button [disabled]="disabledButton" class="cancel-button action-button" (click)="cancelStep()">{{'BEABA_MODAL_COMPONENT.CANCEL_BUTTON' | translate}}</button>
+    </div>
+</div>

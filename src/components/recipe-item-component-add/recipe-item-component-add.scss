@@ -1,0 +1,119 @@
+@import "~sass/styles.scss";
+:host {
+    .recipe-item-body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        opacity: 0.8;
+        fa-icon {
+            font-size: 5em;
+        }
+        .recipe-item-image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100px;
+        }
+        .recipe-item-divider {
+            border-bottom: solid 1px $VERY_LIGHT_GRAY;
+            width: 60%;
+            display: block;
+            margin: 10px 0 10px 0;
+        }
+        .recipe-item-detail-body {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: auto;
+            padding: 2px;
+        }
+        .body-row {
+            display: flex;
+            flex-direction: row;
+        }
+        .recipe-item-detail-tab {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex: 1 3;
+            .recipe-item-img {
+                height: auto;
+                width: 20px;
+            }
+            .recipe-item-img-alt {
+                height: 20px;
+                width: auto;
+            }
+            .recipe-item-detail-title {
+                font-weight: bold;
+                text-align: center;
+            }
+        }
+        .recipe-item-title {
+            font-weight: bold;
+            text-align: center;
+            font-size: 2em;
+        }
+        .recipe-item-subtitle {
+            font-weight: bold;
+            text-align: center;
+            font-size: 1.6em;
+            padding: 12px 30px;
+        }
+    }
+    .recipe-item-news-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 60px;
+        height: 60px;
+        border-style: solid;
+        border-width: 40px 60px 0 0;
+        border-color: $RED_BEABA transparent transparent transparent;
+        .recipe-item-news-icon {
+            position: absolute;
+            top: -32px;
+            left: 0;
+            width: 20px;
+            max-width: 20px;
+            min-height: 10px;
+            height: auto;
+            margin-left: 8px;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        .recipe-item-body {
+            .recipe-item-image-container {
+                height: 180px !important;
+            }
+            ion-icon.icon {
+                font-size: 5em;
+            }
+            .recipe-item-divider {
+                margin: 5px 0;
+            }
+            .recipe-item-title {
+                padding: 5px;
+                font-size: 1.2em;
+            }
+            .recipe-item-subtitle {
+                font-size: 1.1em;
+                padding: 5px 5px 15px 5px;
+            }
+            ion-icon {
+                font-size: 7em;
+            }
+        }
+    }
+}

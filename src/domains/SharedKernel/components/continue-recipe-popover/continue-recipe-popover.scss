@@ -1,0 +1,40 @@
+continue-recipe-popover {
+    div.popover-body{
+        padding: 20px;
+        width: 100%;
+    }
+    p.gray-label{
+        text-align: center;
+        padding-bottom: 15px;
+    }
+    div.flex-row{
+        width: 100%;
+        justify-content: space-around;
+        button{
+            width: 40%;
+            border-radius: $BORDER_RADIUS;
+            height: 30px;
+            color: $WHITE;
+        }
+        button.no-button{
+            background-color: $RED_BEABA;
+        }
+        button.yes-button{
+            background-color: $GREEN_BEABA;
+        }
+    }
+}
+
+ion-popover.continue-recipe-popover {
+    div.popover-content {
+        border-radius: 0.5em;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    ion-popover.continue-recipe-popover {
+        div.popover-content {
+            width: 400px;
+        }
+    }
+}

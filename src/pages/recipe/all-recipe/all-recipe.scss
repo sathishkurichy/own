@@ -1,0 +1,266 @@
+@import "../../../sass/styles.scss";
+:host {
+    .search-header {
+        flex-wrap: wrap;
+        display: block;
+        background-color: $RED_BEABA;
+        form {
+            width: 100%;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            input {
+                box-shadow: $BOX_SHADOW;
+            }
+            div.select-section {
+                display: flex;
+                flex-direction: row;
+            }
+            select {
+                height: 100%;
+                border: unset;
+                width: 100%;
+                font-size: 1.1em;
+                font-weight: 800;
+                text-align: center;
+                padding-right: 15px;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                z-index: 2;
+                background: transparent;
+                margin-left: -14px;
+            }
+            .select-wrapper {
+                margin: 7px;
+                width: 120px;
+                height: 30px;
+                display: flex;
+                justify-content: center;
+                background-color: $WHITE;
+                border-radius: $BORDER_RADIUS;
+                box-shadow: $BOX_SHADOW;
+                overflow: hidden;
+            }
+            .select-arrow {
+                height: 8px;
+                display: block;
+                margin-left: -20px;
+                z-index: 1;
+            }
+            .selected-ingredients {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                top: 0;
+                height: 45px;
+                padding-left: 15px;
+                .selected-ingredient {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    height: 25px;
+                    background-color: $RED_LIGHT_BEABA;
+                    margin: 5px;
+                    border-radius: 0.3em;
+                    padding-left: 3px;
+                    padding-right: 3px;
+                    max-width: 71px;
+                    p {
+                        color: $WHITE;
+                        font-size: 1.3em;
+                        white-space: nowrap !important;
+                    }
+                    .remove-ingredient {
+                        background: unset;
+                    }
+                }
+            }
+            .search-input {
+                position: relative;
+                margin: 7px;
+                height: 30px;
+                input {
+                    border: unset;
+                    width: 200px;
+                    height: 100%;
+                    border-radius: 5em;
+                    padding-left: 20px;
+                    font-size: 1em;
+                    background-color: $RED_LIGHT_BEABA;
+                }
+                input::-webkit-input-placeholder {
+                    padding-top: 5px;
+                }
+            }
+            .reset-button {
+                height: 100%;
+                padding-left: 20px;
+                padding-right: 20px;
+                background-color: $RED_LIGHT_BEABA;
+                border-radius: 0.3em;
+                color: $WHITE;
+            }
+            .button-wrapper {
+                background: unset !important;
+                box-shadow: unset;
+            }
+            .button-wrapper.select-wrapper {
+                @supports (-ms-ime-align: auto) {
+                  background-color: $RED_BEABA !important;
+                }
+            }
+        }
+    }
+    .all-recipe-body {
+        background-color: $VERY_LIGHT_GRAY_BACKGROUND;
+        min-height: calc(100vh - 84px);
+        width: 100%;
+    }
+    .search-header-mobile {
+        display: none;
+        .search-settings {
+            width: 100%;
+            padding-right: 10px;
+            justify-content: flex-end;
+            button {
+                padding: 0 10px;
+                border-radius: $BORDER_RADIUS;
+                height: 35px;
+                background: unset;
+                p {
+                    color: $WHITE;
+                }
+                img {
+                    height: 10px;
+                    transform: rotate(90deg);
+                    transition: transform 0.25s;
+                }
+                img.expanded {
+                    transform: rotate(0deg); // transition: max-height 0.25s ease-in!important;
+                }
+            }
+        }
+        form.show {
+            max-height: 500px !important;
+            transition: max-height 0.25s ease-in !important;
+            display: flex !important;
+            overflow: visible !important;
+        }
+        form.search-form {
+            max-height: 0;
+            transition: max-height 0.15s ease-out;
+            overflow: hidden;
+            .search-input {
+                margin: 5px 0 0 0;
+                height: 30px;
+                input {
+                    border-radius: 0.3em;
+                    border-radius: unset;
+                    padding: unset;
+                    text-align: center;
+                    width: calc(100vw - 2px);
+                }
+                .auto-completion {
+                    width: calc(100vw - 2px);
+                    margin: 0 1px;
+                    z-index: 50;
+                    .ingredient-results {
+                        button.choice {
+                            height: 30px;
+                            box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.5);
+                        }
+                    }
+                }
+                .spinner {
+                    height: 30px;
+                }
+                .no-ingredient-label {
+                    height: 30px;
+                }
+            }
+            .select-container {
+                width: 100vw;
+                justify-content: center;
+                flex-wrap: wrap;
+                padding: 0 1px;
+                div.select-wrapper:last-child {
+                    border: unset !important;
+                }
+                div.select-wrapper {
+                    margin: 5px 0;
+                    height: 30px;
+                    flex: 1 0 0;
+                    overflow: hidden;
+                    border-right: 1px solid $GRAY;
+                    border-radius: unset;
+                    select {
+                        font-size: 0.8em;
+                        height: 30px;
+                        border-radius: unset;
+                        width: 100%;
+                        padding-right: 13px;
+                        margin-left: -3px;
+                    }
+                    .select-arrow {
+                        height: 6px;
+                        margin-left: -13px;
+                    }
+                    .reset-button {
+                        height: 35px;
+                    }
+                }
+            }
+            div.select-wrapper {
+                height: 30px;
+                margin: 5px;
+            }
+            .button-wrapper {
+                margin: 0 0 5px 0 !important;
+                background: unset !important;
+            }
+        }
+    }
+    .translator-lang-selection {
+        display: flex;
+        min-height: 30px;
+        align-items: center;
+        flex-direction: row;
+        align-content: flex-end;
+        padding: 10px;  
+    
+        select {
+            margin-right: 24px;
+            min-width: 300px;
+            min-height: 30px;
+            border-radius: $BORDER_RADIUS;
+            font-size: 1.5em;
+            background-color: $RED_BEABA;
+          color: white;
+        }
+        option{
+          color: white;
+        }
+        label {
+            min-width: 300px;
+            font-size: 1.3em;
+            padding-bottom: 10px;
+        }
+    }
+}
+.recipe-item-container{
+    .spinner {
+        background-color: transparent;
+        margin-top: 1em;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    :host {
+        .search-header {
+            display: none;
+        }
+        .search-header-mobile {
+            display: block;
+        }
+    }
+}

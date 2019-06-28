@@ -1,0 +1,30 @@
+@import "~sass/styles.scss";
+:host {
+    .select-modal {
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.25);
+        z-index: 1;
+        .scroll {
+            max-height: 400px;
+            width: 400px;
+            margin: 20vh auto;
+            overflow-y: scroll;
+            box-shadow: $BOX_SHADOW;
+            background-color: $WHITE;
+            border-top: 20px solid #e57a70;
+            border-bottom: 20px solid #e57a70;
+            border-radius: 1.5em;
+            button {
+                min-height: 40px;
+                box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+                width: 100%;
+                background: unset;
+                color: $GRAY;
+            }
+        }
+    }
+}

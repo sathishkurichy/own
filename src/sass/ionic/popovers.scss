@@ -1,0 +1,36 @@
+.recipe-popover {
+    .popover-arrow::after {
+        background: $RED_BEABA !important;
+        background-color: $RED_BEABA !important;
+    }
+    .popover-content {
+        background: $RED_BEABA !important;
+        background-color: $RED_BEABA !important;
+        border-radius: 48px !important;
+        min-width: 250px!important;
+    }
+}
+
+.proof-purchase-popover {
+    .popover-content {
+        width: 90vw !important;
+        max-width: 90vw !important;
+    }
+    .popover-arrow::after {
+        background: $TEAL_BEABA !important;
+        background-color: $TEAL_BEABA !important;
+    }
+    .popover-content {
+        background: $TEAL_BEABA !important;
+        background-color: $TEAL_BEABA !important;
+        border-radius: 48px !important;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .recipe-popover {
+        .popover-content {
+            min-width: 500px!important;
+        }
+    }
+}

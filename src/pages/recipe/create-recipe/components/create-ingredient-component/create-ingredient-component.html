@@ -1,0 +1,49 @@
+<div class="create-ingredient-component flex-column">
+    <div id="recipe-ingredients">
+
+        <p class="ingredients">{{'RECIPE_MANAGEMENT.CREATE_RECIPE.INGREDIENTS' | translate}}</p>
+        <p class="dark-label-title" *ngIf="ingredients.length == 0">{{'RECIPE_MANAGEMENT.CREATE_RECIPE.NO_INGREDIENT_YET' | translate}}</p>
+        <div class="ingredient-list flex-column" *ngIf="ingredients.length > 0">
+            <div class="ingredient flex-row" *ngFor="let ingredient of ingredients">
+                <p class="ingredient-quantity cut-text" *ngIf="ingredient.unit.sigle.length > 0">{{ingredient.quantity}}{{ingredient.unit.sigle}}</p>
+                <p class="ingredient-quantity cut-text" *ngIf="ingredient.unit.sigle.length < 1">{{ingredient.quantity}}{{ingredient.unit.name}}</p>
+                <p class="ingredient-name cut-text">{{ingredient.ingredient.name}}</p>
+                <button [disabled]="disabledButton" class="remove-circle" (click)="removeIngredient(ingredient.ingredient)">
+                    <fa-icon [icon]="faTimes" class="cross-icon" name="close"></fa-icon>
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <button [disabled]="disabledButton" class="add-ingredient" (click)="addIngredient()">{{'RECIPE_MANAGEMENT.CREATE_RECIPE.ADD_INGREDIENT' | translate}}</button>
+    <div class="ingredient-form flex-column" *ngIf="creatingIngredient">
+        <div class="input-container">
+            <input [formControl]="ingredientControl" class="input input-title" (focus)="focus = true" (blur)="ingredientInputBlur()" placeholder="{{ 'RECIPE_MANAGEMENT.CREATE_RECIPE.STEP_INGREDIENTS_SELECTED' | translate }}">
+            <div class="auto-completion" *ngIf="focus && ingredientControl.value != currentIngredient">
+                <button *ngIf="searching" class="spinner"> <fa-icon [icon]="faSpinner" [spin]="true" size="2x" ></fa-icon> </button>
+                <button [disabled]="disabledButton" class="no-ingredient-label" *ngIf="ingredientCompletion.length == 0 && ingredientControl.value.length > 0 && !searching" disabled>{{'RECIPE_MANAGEMENT.RECIPES_SEARCH.KEYWORD_NOT_FOUND' | translate}}</button>
+                <div class="ingredient-results" *ngIf="ingredientCompletion.length > 0 && !searching">
+                    <button class="choice" *ngFor="let ingredient of ingredientCompletion" (click)="selectIngredient(ingredient)">{{ingredient.name}}</button>
+                </div>
+            </div>
+        </div>
+
+        <select [formControl]="unitControl" class="input input-unit" *ngIf="units.length > 0">
+            <option selected disabled [value]="null">{{'RECIPE_MANAGEMENT.CREATE_RECIPE.UNIT' | translate}}</option>
+            <option *ngFor="let unit of units" [ngValue]="unit">{{unit.name}}</option>
+        </select>
+
+        <!--<input [formControl]="quantityControl" placeholder="{{'RECIPE_MANAGEMENT.CREATE_RECIPE.QUANTITY' | translate}}" type="number" class="input input-quantity" min="0" (keypress)="_keyPress($event)">-->
+
+        <select [formControl]="quantityControl" class="input input-unit">
+            <option *ngFor="let value of quantity" [value]="value">{{value}}</option>
+        </select>
+
+        <div class="flex-row">
+            <button [disabled]="disabledButton" class="action-button cancel-button" (click)="cancelIngredient()">{{'BEABA_MODAL_COMPONENT.CANCEL_BUTTON' | translate}}</button>
+            <button [disabled]="!quantityControl.valid || !unitControl.valid || !ingredientValid || disabledButton" class="action-button confirm-button" (click)="validIngredient()">{{'RECIPE_MANAGEMENT.CREATE_RECIPE.VALID' | translate}}</button>
+        </div>
+    </div>
+
+</div>

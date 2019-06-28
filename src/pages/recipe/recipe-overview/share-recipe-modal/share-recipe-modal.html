@@ -1,0 +1,18 @@
+<div class="background"></div>
+<div class="share-modal flex-column">
+    <p class="label share-title">{{'SHOPPING_LIST.SHARE' | translate}}</p>
+    <share-buttons id="share-button"
+                    [theme]="'default'"
+                    [include]="['facebook','twitter','google','linkedin','pinterest','reddit','tumblr','whatsapp','email','copy']"
+                    [show]="17"
+                    [showText]="true"
+                    [size]="1"
+                    [url]="currentUrl"
+                    [title]="recipeName"
+                    [image]="recipeImageUrl"
+                    [tags]="'Beaba'"
+                    [autoSetMeta]="false"></share-buttons>
+    <div class="flex-row">
+        <button class="nope" (click)="close(false)">{{'ERROR_MESSAGE.POPUP.DISMISS' | translate}}</button>
+    </div>
+</div>

@@ -1,0 +1,90 @@
+@import "~sass/styles.scss";
+:host {
+
+    html, body {
+      height:100%;
+      margin:0;
+    }
+
+    html>body .content {
+      height:auto;
+    }
+
+    .sav-header {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 60px;
+    }
+    .table-container {
+        height:calc(100% - 120px);
+        min-height:calc(100% - 120px);
+    }
+    .absolute {
+        top: 0;
+        left: 0;
+    }
+    .datatable-header {
+        color: white;
+        background-color: $RED_BEABA !important;
+    }
+    .datatable-row-center datatable-row-group,
+    .datatable-body-cell sort-active {
+        background-color: grey !important;
+    }
+    .linear-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .ion-card{
+      margin: 10px;
+      border-radius: 2px;
+      width: calc(100% - 20px);
+      font-size: 1.4rem;
+      background: #fff;
+      .ion-card-content{
+        padding: 13px 16px;
+        font-size: 1.4rem;
+        line-height: 1.5;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+      }
+    }
+  .spinner {
+    height: 30px;
+    background: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+  .detail-guarantee-product, .edit-guarantee-product {
+    width: 25px;
+    height: 25px;
+    border-radius: 20%;
+    text-align: center;
+    display: inline-block;
+    margin-right: 5px;
+  }
+  .detail-guarantee-product {
+    background-color: #21ba9b;
+  }
+  .edit-guarantee-product {
+    background-color: #f0ae4d;
+    padding-left: 3px;
+  }
+  fa-icon {
+    color: white;
+    vertical-align: sub; 
+  }
+  .label-detail {
+    font-style: bold!important;
+    font-size: 1.2em!important;
+  }
+  .detail-data {
+    margin-top: 10px;
+  }
+}

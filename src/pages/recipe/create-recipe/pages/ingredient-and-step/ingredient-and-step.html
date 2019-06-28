@@ -1,0 +1,34 @@
+<div class="ingredient-and-step-page">
+    <div class="red-background">
+        <div id="recipe-title" [ngClass]="{'background-color': !thumbnail}">
+            <img *ngIf="thumbnail" class="background" [src]="sanitizer.bypassSecurityTrustResourceUrl(thumbnail)">
+            <!-- <div>
+                <div class="picture-input">
+                    <input [disabled]="disabledButton" type="file" id="picture" (change)="pictureChange($event)" style="display:none" accept=".jpg, .jpeg, .png">
+                    <label for="picture" class="no-padding picture-icon flex-row">
+                        <img class="picture-icon" src="assets/img/camera.png">
+                    </label>
+                </div>
+            </div> -->
+            <div class="title">
+                <p class="recipe-title">{{basicInfo.controls.name.value}}</p>
+                <p class="recipe-author">{{'RECIPE_MANAGEMENT.RECIPES_DETAIL.BY' | translate}} {{author}}</p>
+            </div>
+        </div>
+
+        <div class="component-container flex-row">
+            <div class="ingredients">
+                <create-ingredient-component [disabledButton]="disabledButton" [ingredients]="ingredients" (ingredientEmitter)="changeIngredients($event)"></create-ingredient-component>
+            </div>
+            <div class="steps">
+                <create-step-component [disabledButton]="disabledButton" [ingredients]="ingredients" [steps]="steps" (stepEmitter)="changeSteps($event)"></create-step-component>
+            </div>
+        </div>
+
+        <div class="finish-recipe flex-column" *ngIf="ingredients.length > 0 && steps.length > 0">
+            <button [disabled]="steps.length == 0 || ingredients.length == 0 || disabledButton" class="done" (click)="postBeabaRecipe()">{{'RECIPE_MANAGEMENT.CREATE_RECIPE.END_RECIPE' | translate}}</button>
+        </div>
+    </div>
+</div>
+
+<submit-modal *ngIf="showSubmitModal" (isSubmit)="isSubmit($event)"></submit-modal>

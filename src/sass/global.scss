@@ -1,0 +1,123 @@
+@import "./variables";
+
+
+.recipe-item-body:hover {
+    cursor: pointer;
+}
+
+.max-width{
+    max-width: $RESPONSIVE_WIDTH;
+    margin: auto;
+}
+
+.sb-content {
+  color: white !important;
+}
+
+select {
+    text-align-last: center;
+}
+
+.cut-text {
+    white-space: nowrap!important;
+}
+
+.recipe-body {
+    background-color: $VERY_LIGHT_GRAY_BACKGROUND;
+    min-height: calc(100vh - 80px);
+    width: 100%;
+}
+
+.recipe-item-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding-top: 8px;
+
+    @supports (-ms-ime-align: auto) {
+        display: -ms-flex;
+        justify-content: space-around;
+    }
+}
+
+.recipe-item {
+    position: relative;
+    width: 300px;
+    height: 350px;
+    margin: 10px;
+    background-color: $WHITE;
+}
+
+.recipe-item.wrapped {
+  width: 492px;
+  .recipe-item-body {
+    flex-direction: row;
+    //width: 480px;
+  }
+  .recipe-item-image-container {
+    margin-left: 0;
+    height: 100%!important;
+    display: flex!important;
+  }
+}
+
+.auto-completion {
+    position: absolute;
+    z-index: 10;
+    width: 300px;
+    .spinner {
+        width: 100%;
+        height: 45px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        background-color: $WHITE;
+        box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.5);
+        border-radius: $BORDER_RADIUS;
+    }
+    .no-ingredient-label {
+        width: 100%;
+        height: 45px;
+        background-color: $WHITE;
+        box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.5);
+        border-radius: $BORDER_RADIUS;
+        opacity: 0.9;
+        color: $LIGHT_GRAY;
+    }
+    .ingredient-results {
+        button {
+            width: 100%;
+            background-color: $WHITE;
+            box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.5);
+            height: 45px;
+            border: unset;
+            text-align: center;
+        }
+        button:first-child {
+            border-top-left-radius: 0.5em;
+            border-top-right-radius: 0.5em;
+        }
+        button:last-child {
+            border-bottom-left-radius: 0.5em;
+            border-bottom-right-radius: 0.5em;
+        }
+    }
+}
+
+.recipe-management-table {
+    datatable-header-cell:last-child {
+        min-width: 275px!important;
+    }
+    datatable-body-cell:last-child {
+        min-width: 275px!important;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    div.recipe-item {
+        position: relative!important;
+        width: 150px!important;
+        height: 180px!important;
+        margin: 5px!important;
+    }
+}

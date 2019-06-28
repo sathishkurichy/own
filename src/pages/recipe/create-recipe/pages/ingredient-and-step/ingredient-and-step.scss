@@ -1,0 +1,171 @@
+@import "~sass/styles.scss";
+:host> {
+    z-index: 0;
+}
+
+:host {
+    .ingredient-and-step-page {
+        background-color: $WHITE;
+        min-height: calc(100% - 40px);
+        display: flex;
+        flex-direction: column;
+        background-color: $RED_LIGHT_BEABA;
+        .red-background {
+            max-width: 1200px;
+            margin: auto;
+            height: max-content;
+            flex-grow: 1;
+        }
+    }
+    .picture-icon {
+        justify-content: flex-end;
+        margin: 0;
+        padding: 15px 30px 0 30px;
+        max-height: 140px;
+        max-width: 140px;
+    }
+    .cut-text {
+        white-space: nowrap !important;
+    }
+    .component-container {
+        align-items: flex-start;
+        max-width: 1200px;
+        margin: 0 auto;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .ingredients,
+    .steps {
+        width: 50%;
+        min-width: 360px;
+        padding: 0 20px;
+    }
+    div#recipe-title {
+        * {
+            z-index: 2;
+        }
+        position: relative;
+        height: 250px;
+        background-color: $GRAY;
+        max-width: 1200px;
+        margin: auto;
+        .picture-input {
+            display: flex;
+            width: 100%;
+            flex-direction: row;
+            justify-content: flex-end;
+            label {
+                padding-right: 30px;
+            }
+        }
+        img.background {
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            z-index: 1;
+            object-fit: cover;
+        }
+        div.title {
+            padding-left: 30px;
+            position: relative;
+            p {
+                color: white;
+            }
+            .recipe-title {
+                font-size: 2em;
+            }
+            .recipe-author {
+                font-size: 1.5em;
+            }
+        }
+    }
+    .finish-recipe {
+        max-width: 800px;
+        margin: auto;
+        justify-content: center;
+        padding-bottom: 30px;
+        p {
+            font-size: 1.5em;
+        }
+        input {
+            margin: 20px 0 30px 0;
+            width: 200px;
+            border-radius: $BORDER_RADIUS;
+            border: unset;
+            height: 50px;
+            text-align: center;
+            font-size: 1.5em;
+        }
+        .done {
+            font-size: 1.5em;
+            height: 50px;
+            margin: auto;
+            text-align: center;
+            width: 400px;
+            background-color: $RED_BEABA;
+            color: $WHITE;
+            border-radius: $BORDER_RADIUS;
+        }
+    }
+    @media screen and (max-width: 768px) {
+        div#recipe-title {
+            height: 150px;
+            div.picture-input {
+                label.picture-icon {
+                    padding: 10px;
+                    img.picture-icon {
+                        height: 50px;
+                        padding: 0;
+                    }
+                }
+            }
+            div.title {
+                bottom: 10px;
+                position: absolute;
+                p.recipe-title {
+                    font-size: 1.3em;
+                }
+                p.recipe-author {
+                    font-size: 0.9em;
+                }
+            }
+        }
+        div.component-container {
+            max-width: 100vw;
+            margin: 0;
+        }
+        div.recipe-title {
+            width: 100vw;
+            padding: 0 10vw;
+            p.duration-model {
+                font-size: 1.2em;
+                text-align: center;
+            }
+            input {
+                margin: 5px 0 10px 0;
+                width: 80px;
+                border-radius: 0.3em;
+                height: 30px;
+                font-size: 1.3em;
+            }
+            button.done {
+                width: 200px;
+                height: 30px;
+                font-size: 1.2em;
+            }
+        }
+        div.finish-recipe {
+            button.done {
+                width: 200px;
+                height: 30px;
+                margin: 10px 0;
+                font-size: 1em;
+            }
+        }
+    }
+    @media screen and (min-width: 769px) and (max-width: 1100px) {
+        div.red-background {
+            width: 100%;
+        }
+    }
+}

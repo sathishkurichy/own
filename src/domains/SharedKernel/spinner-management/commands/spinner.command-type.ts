@@ -1,0 +1,4 @@
+export const SPINNER_COMMAND_TYPE = {
+    SHOW_SPINNER: '[Spinner] SHOW_SPINNER',
+    HIDE_SPINNER: '[Spinner] HIDE_SPINNER'
+};

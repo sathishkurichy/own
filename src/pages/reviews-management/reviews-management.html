@@ -1,0 +1,36 @@
+<locale-select *ngIf="authService.isSuperModerator()" (onLocaleChangeEvent)="onLocaleChange($event)">
+</locale-select>
+<ngx-datatable
+    #myTable
+    class="material table-container"
+    [selectionType]="false"
+    [rows]="reviews"
+    [columns]="columns"
+    [sortType]="'multi'"
+    [columnMode]="'force'"
+    [headerHeight]="50"
+    [footerHeight]="50"
+    [rowHeight]="50"
+    [scrollbarV]="true"
+    [scrollbarH]="true"
+    >
+    <ng-template #detailTemplate let-row="row" let-value="value" let-i="index" let-rowIndex="rowIndex">
+        <button class="reviews-management-button half" *ngIf="!loading && !errorLoadingKReview" (click)="seeComment(row)">{{ 'WEBSITE.REVIEWS_MANAGEMENT.SHOW_COMMENT' | translate }}</button>
+        <button class="reviews-management-button danger-button half" *ngIf="!loading && !errorLoadingKReview" (click)="deleteComment(row)">{{ 'WEBSITE.REVIEWS_MANAGEMENT.DELETE_COMMENT' | translate }}</button>
+        <!--<button (click)="toggleExpandRow(row, rowIndex)">{{ 'WEBSITE.COMMON.DETAIL' | translate }}</button>-->
+    </ng-template>
+    <ngx-datatable-row-detail [rowHeight]="100">
+      <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+        <div class="ion-card">
+          <div class="ion-card-content">{{ row.reviewComment }}</div>
+        </div>
+      </ng-template>
+    </ngx-datatable-row-detail>
+  </ngx-datatable>
+  <div class="loader-container" *ngIf="loading || loadingReviews">
+    <div class="linear-container">
+      <!--<ion-spinner></ion-spinner>-->
+      <button class="spinner"> <fa-icon [icon]="faSpinner" [spin]="true" size="2x" ></fa-icon> </button>
+      <h3>{{ 'WEBSITE.COMMON.LOADING' | translate }}</h3>
+    </div>
+</div>

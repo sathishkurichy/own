@@ -1,0 +1,8 @@
+@import "../../../sass/styles.scss";
+:host {
+    .personnal-recipe-page{
+        background-color: $VERY_LIGHT_GRAY_BACKGROUND;
+        min-height: $WEBSITE-BODY;
+        width: 100%;
+    }
+}

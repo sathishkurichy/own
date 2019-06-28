@@ -1,0 +1,27 @@
+@import "~sass/styles.scss";
+.translator-lang-selection {
+    display: flex;
+    min-height: 30px;
+    align-items: center;
+    flex-direction: row;
+    align-content: flex-end;
+    padding: 10px;  
+
+    select {
+        margin-right: 24px;
+        min-width: 300px;
+        min-height: 30px;
+        border-radius: $BORDER_RADIUS;
+        font-size: 1.5em;
+        background-color: $RED_BEABA;
+      color: white;
+    }
+    option{
+      color: white;
+    }
+    label {
+        min-width: 300px;
+        font-size: 1.3em;
+        padding-bottom: 10px;
+    }
+}

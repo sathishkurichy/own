@@ -1,0 +1,7 @@
+<div class="translator-lang-selection">
+    <label class="language-label">{{ 'WEBSITE.COMMON.CHOOSE_LANG' | translate }}</label>
+    <select (change)="onChange($event.target.value)">
+        <option disabled selected value></option>
+        <option value="{{ locale.locale }}"  *ngFor="let locale of locales">{{ locale.name }}</option>
+    </select>
+</div>

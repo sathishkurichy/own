@@ -1,0 +1,76 @@
+<div class="sav-header">
+    <locale-select *ngIf="authService.isSuperSav()" (onLocaleChangeEvent)="onLocaleChange($event)">
+    </locale-select>
+</div>
+  <ngx-datatable
+      #myTable
+      class="material table-container"
+      [selectionType]="false"
+      [rows]="sav"
+      [columns]="columns"
+      [sortType]="'multi'"
+      [columnMode]="'force'"
+      [headerHeight]="50"
+      [footerHeight]="50"
+      [rowHeight]="50"
+      [scrollbarV]="true"
+      >
+      <ng-template #detailTemplate let-row="row" let-value="value" let-i="index" let-rowIndex="rowIndex">
+          <div class="detail-guarantee-product" (click)="openDetailProduct(row)">
+              <fa-icon [icon]="faEye"></fa-icon>
+          </div>
+          <!-- <div class="edit-guarantee-product" (click)="editDetailProduct(row)">
+              <fa-icon [icon]="faEdit"></fa-icon>
+          </div> -->
+      </ng-template>
+      <ngx-datatable-row-detail [rowHeight]="580">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+            <div class="ion-card">
+              <div class="ion-card-content" *ngIf="modeExpand == 'details'">
+                <div class="detail-data">
+                    <p class="label-detail">{{ 'WEBSITE.SAV.ID' | translate }}</p>
+                    {{ row.id }}
+                </div>
+                <div class="detail-data">
+                    <p class="label-detail">{{ 'WEBSITE.SAV.PURCHASE_DATE' | translate }}</p>
+                    {{ row.purchaseDate }}
+                </div>
+                <div class="detail-data">
+                    <p class="label-detail">{{ 'WEBSITE.SAV.PRODUCT' | translate }}</p>
+                    {{ row.name }}
+                </div>
+                <div class="detail-data">
+                    <p class="label-detail">{{ 'WEBSITE.SAV.CITY' | translate }}</p>
+                    Test
+                </div>
+                <div class="detail-data">
+                    <p class="label-detail">{{ 'WEBSITE.SAV.POSTAL_CODE' | translate }}</p>
+                    Test
+                </div>
+                <div class="detail-data">
+                    <p class="label-detail">{{ 'WEBSITE.SAV.SHOP' | translate }}</p>
+                    Test
+                </div>
+                <div class="detail-data">
+                    <p class="label-detail">{{ 'WEBSITE.SAV.PROOF' | translate }}</p>
+                    <button (click)="openImage(row)">
+                      Voir
+                    </button>
+                </div>
+                <div class="detail-data">
+                    <p class="label-detail">{{ 'WEBSITE.SAV.SIGNUP_DATE' | translate }}</p>
+                    {{ row.createDate }}
+                </div>
+                <div class="detail-data">
+                    <p class="label-detail">{{ 'WEBSITE.SAV.UPDATE_DATE' | translate }}</p>
+                    {{ row.updateDate }}
+                </div>       
+              </div>
+            </div>
+          <div *ngIf="modeExpand == 'edit'">
+            Edit mode
+          </div>
+        </ng-template>
+      </ngx-datatable-row-detail>
+    </ngx-datatable>
+  

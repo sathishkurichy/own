@@ -1,0 +1,45 @@
+@import "~sass/styles.scss";
+:host {
+    .background {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        height: 100vh;
+        width: 100vw;
+        background-color: rgba(0, 0, 0, 0.25);
+        z-index: 10;
+    }
+    .submit-modal {
+        position: fixed;
+        top: 40vh;
+        left: calc(50vw - 200px);
+        background-color: $WHITE;
+        height: 200px;
+        width: 400px;
+        border-radius: $BORDER_RADIUS;
+        z-index: 15;
+        justify-content: space-evenly;
+        p {
+            padding: 15px;
+            text-align: center;
+        }
+        .flex-row {
+            justify-content: space-evenly;
+            height: 60px;
+            width: 100%;
+            button {
+                height: 40px;
+                width: 150px;
+                text-align: center;
+                border-radius: $BORDER_RADIUS;
+                color: $WHITE;
+            }
+            .nope {
+                background-color: $RED_BEABA;
+            }
+            .submit {
+                background-color: $GREEN_BEABA;
+            }
+        }
+    }
+}

@@ -1,0 +1,3 @@
+[submodule "src/domains/SharedKernel"]
+	path = src/domains/SharedKernel
+	url = https://bitbucket.org/adeneo-embedded/b1874-beaba-shared-kernel.git

@@ -1,0 +1,368 @@
+@import '~sass/variables';
+.main-header {
+    background-color: $RED_LIGHT_BEABA;
+    box-shadow: $BOX_SHADOW;
+    display: block;
+    width: 100vw;
+    .recipe-tabs {
+        background-color: $RED_LIGHT_BEABA;
+        height: $WEBSITE-HEADER;
+        justify-content: center;
+        width: 100%;
+        .recipe-tab {
+            padding: 0 5px;
+            background: unset;
+            width: 280px;
+            height: 100%;
+            border: unset;
+            line-height: 1.5em;
+            p {
+                font-size: 1.2em;
+                color: $RED_BEABA;
+            }
+        }
+        .selected {
+            border-bottom: 5px solid $GREEN_BEABA;
+        }
+    }
+}
+
+.main-header-mobile {
+    display: none;
+    button {
+        background-color: unset;
+    }
+    .header-bar {
+        background-color: $RED_LIGHT_BEABA;
+    }
+    .menu-toggle-button {
+        padding: 10px;
+    }
+    .recipe-tabs-mobile {
+        border-top: 1px solid $RED_LIGHT_BEABA;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border-bottom: 1px solid $RED_LIGHT_BEABA;
+        .recipe-tab {
+            border-top: 1px solid rgba($RED_LIGHT_BEABA, 0.5);
+            background-color: $RED_BEABA;
+            width: 100%;
+            height: 2.5em;
+            p {
+                font-size: 1em;
+                color: $RED_LIGHT_BEABA;
+            }
+        }
+    }
+}
+
+.header-menu-shop-beaba-mobile {
+    display: none;
+    background-color: $GREEN_BEABA;
+    .recipe-tabs-mobile {
+        display: flex;
+        flex-direction: column;
+        border-bottom: 2px solid $GREEN_BEABA;
+        .recipe-tab {
+            border-top: 1px solid rgba(white, 0.5);
+            background-color: $GREEN_BEABA;
+            width: 100%;
+            height: 2.5em;
+            text-align: left;
+            p {
+                font-size: 1em;
+                color: white;
+            }
+        }
+    }
+}
+
+.subMenuMobile1, .subMenuMobile2, .subMenuMobile3, .subMenuMobile4 {
+    li {
+        list-style-type:none;
+        height: 2em;
+        border-top: 0.5px solid rgba(white, 0.5);
+        color: white;
+        font-size: 1.5em;
+        padding-top: 7px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .main-header {
+        display: none;
+    }
+    .main-header-mobile {
+        display: block;
+    }
+    .header-shop-beaba {
+        display: none!important;
+    }
+    .header-menu-shop-beaba {
+        display: none!important;
+    }
+    .header-menu-shop-beaba-mobile {
+        display: block!important;
+    }
+}
+
+div#cookies-modale {
+    z-index: 999;
+    position: absolute;
+    width: 100vw;
+    height: 300px;
+    div.cookies-container {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        background-color: rgba(#000, 0.5);
+        padding: 1vh;
+        font-family: Nunito;
+        p {
+            color: white;
+            font-weight: bold;
+            font-size: 1.5em;
+            text-align: left;
+        }
+        button {
+            height: 20px;
+            color: white;
+            font-weight: bold;
+            font-size: 1.5em;
+            border: none;
+            background-color: transparent;
+            text-align: right;
+            margin-right: 2vh;
+        }
+        a{
+          color: white;
+          text-decoration: none;
+        }
+    }
+}
+
+.header-shop-beaba {
+    background-color: #FFFFFF;
+    height: 64px;
+    img {
+        margin-left: 25px;
+        margin-top: -5px;
+    }
+}
+
+.header-menu-shop-beaba {
+    background-color: #b8c92f;
+    min-height: 64px;
+    text-align: center;
+    width: 100%;
+    button {
+        margin-left: 40px;
+        margin-right: 40px;
+        background-color: #b8c92f;
+        color: white;
+        height: 63px;
+        margin-top: 0px;
+        transition: color 0.5s;
+    }
+    button:hover {
+        color: #666666;
+        transition: color 0.5s;
+    }
+}
+
+.subMenuLabel {
+    margin-top: 30px;
+    color: #666666;
+    vertical-align: middle;
+    font-size: 1.4em;
+    cursor: pointer;
+    font-family: 'omnesmedium';
+}
+
+#subMenu1 {
+    width: 1050px;
+    height: 290px;
+    background-color: white;
+    position:absolute;
+    border: solid 2px #b8c92f;
+    border-radius: 15px;
+    z-index: 42;
+    transition: color 0.5s;
+    img {
+        margin-top: 20px;
+        cursor: pointer;
+    }
+}
+
+#subMenu2 {
+    width: 1050px;
+    height: 290px;
+    background-color: white;
+    position:absolute;
+    border: solid 2px #b8c92f;
+    border-radius: 15px;
+    z-index: 42;
+    transition: color 0.5s;
+    img {
+        margin-top: 20px;
+        cursor: pointer;
+    }
+}
+
+#subMenu3 {
+    width: 800px;
+    height: 290px;
+    background-color: white;
+    position:absolute;
+    border: solid 2px #b8c92f;
+    border-radius: 15px;
+    z-index: 42;
+    transition: color 0.5s;
+    img {
+        margin-top: 20px;
+        cursor: pointer;
+    }
+}
+
+#subMenu4 {
+    width: 400px;
+    height: 483px;
+    background-color: white;
+    position:absolute;
+    border: solid 2px #b8c92f;
+    border-radius: 15px;
+    z-index: 42;
+    transition: color 0.5s;
+    padding-right: 30px;
+    img {
+        margin-top: 20px;
+        cursor: pointer;
+    } ul {
+        margin-top: 45px;
+    }
+}
+
+.last-submenu-2, .last-submenu-1 {
+    margin-right: 40px;
+}
+
+.last-submenu-3 {
+    margin-right: 40px;
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+.inline {
+    display: inline-block;
+}
+
+.list-sub-menu ul {
+    margin-top: 25px;
+}
+
+.list-sub-menu li {
+    list-style-type: none; 
+    font-size: 12px;
+    line-height: 25px;
+    color: #666666;
+    cursor: pointer;
+    vertical-align: middle;
+    font-family: 'omnesmedium';
+    margin-top: 5px;
+    text-align: left;
+}
+
+.list-sub-menu li:hover {
+    text-decoration: underline;
+}
+
+.shop, .account {
+    position: absolute;
+    cursor: pointer;
+    top: 15px;
+    fa-icon {
+        color: rgb(184, 201, 47);
+    }
+    fa-icon:hover {
+        color: #666666;
+    }
+    label {
+        font-size: 14px;
+        line-height: 15px;
+        color: #666666;
+        font-family: 'omnesmedium';
+        position: absolute;
+        top: -30px;
+        cursor: pointer;
+    }
+}
+
+.language {
+    position: absolute;
+    cursor: pointer;
+    top: 25px;
+    font-size: 14px;
+    line-height: 15px;
+    color: #666666;
+    font-family: 'omnesmedium';
+}
+
+.language:hover {
+    text-align: right;
+    ul {
+        text-align: left;
+    }
+}
+
+.shop {
+    right: 400px;
+    label {
+        margin-left: 30px;
+        width: 65px;
+    }
+}
+
+.account {
+    right: 250px;
+    label {
+        margin-left: 38px;
+    }
+}
+
+.language {
+    right: 100px;
+}
+
+.overhide-color-icon {
+    color: #666666!important;
+}
+
+#select-language {
+    width: 50px;
+    height: 20px;
+    background-color: white;
+    color: #b8c92f;
+    border: solid 1px #666666;
+    li {
+        list-style-type:none;
+        margin-left: -30px;
+    }
+}
+
+// Fixs Firefox
+@-moz-document url-prefix() {
+    .account label {
+        margin-left: 10px!important;
+    }
+    .shop label {
+        margin-left: 10px!important;
+        width: 54px!important;
+    }
+}
+

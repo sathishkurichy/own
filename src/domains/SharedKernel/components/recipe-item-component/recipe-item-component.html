@@ -1,0 +1,40 @@
+<div class="recipe-item-body">
+    <div class="recipe-item-image-container">
+        <img class="recipe-item-image" [src]="recipe.imageUrlMobile != null ? recipe.imageUrlMobile : 'assets/img/placeholder.jpg'" />
+        <div class="recipe-item-fav-body">
+            <div class="score" [ngClass]="{'score-big': recipe.score > 99, 'favorite': recipe.favorite}">
+                <img class="recipe-item-fav-icon" [src]="recipe.favorite? 'assets/img/fav-star-green.png' : 'assets/img/fav-star-grey.png'" />
+                <p class="recipe-item-fav-count">{{ recipe?.score }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="recipe-item-details">
+        <p class="recipe-item-title gray-small-title">{{ recipe?.name | uppercase }}</p>
+        <div class="recipe-item-divider"></div>
+        <div class="recipe-item-detail-body">
+            <div class="body-row">
+                <div class="recipe-item-detail-tab">
+                    <img class="recipe-item-img-alt" src="assets/img/time.png" />
+                </div>
+                <div class="recipe-item-detail-tab">
+                    <img class="recipe-item-img" src="assets/img/cuisson.png" />
+                </div>
+                <div class="recipe-item-detail-tab">
+                    <img class="recipe-item-img" src="assets/img/child-age.png" />
+                </div>
+            </div>
+            <div class="body-row label-body">
+                <div class="recipe-item-detail-tab">
+                    <p class="recipe-item-detail-title red-sublabel">{{recipe?.preparationTime}} {{ 'RECIPE_MANAGEMENT.RECIPE_LIST.MINUTE' | translate }}</p>
+                </div>
+                <div class="recipe-item-detail-tab">
+                    <p class="recipe-item-detail-title red-sublabel">{{recipe?.bakingTime}} {{ 'RECIPE_MANAGEMENT.RECIPE_LIST.MINUTE' | translate }}</p>
+                </div>
+                <div class="recipe-item-detail-tab">
+                    <p *ngIf="recipe?.ageRangeMin != 25 || recipe?.ageRangeMax != 36" class="recipe-item-detail-title red-sublabel">{{recipe?.ageRangeMin}} {{ 'RECIPE_MANAGEMENT.RECIPE_LIST.AT' | translate }} {{recipe?.ageRangeMax}} {{ 'MONTH' | translate }}</p>
+                    <p *ngIf="recipe?.ageRangeMin == 25 && recipe?.ageRangeMax == 36" class="recipe-item-detail-title red-sublabel ">{{ '24_MORE_MONTHS' | translate }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

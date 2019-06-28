@@ -1,0 +1,307 @@
+// Allow line break on translation files
+p,
+label,
+h5 {
+    white-space: pre-wrap!important;
+    @supports (-ms-ime-align: auto) {
+      white-space: normal !important;
+    }
+}
+
+// FONT WEIGHT
+.regular {
+    font-weight: 400
+}
+
+.semi-bold {
+    font-weight: 600
+}
+
+.bold {
+    font-weight: bold
+}
+
+.extra-bold {
+    font-weight: 800
+}
+
+.black {
+    font-weight: 900
+}
+
+// FONT SIZE
+.title {
+    font-size: 1.5em
+}
+
+.subtitle {
+    font-size: 1.2em
+}
+
+.label {
+    font-size: 1em
+}
+
+// FONT COLOR
+.yellow-beaba {
+    color: $YELLOW_BEABA
+}
+
+.red-beaba {
+    color: $RED_BEABA
+}
+
+.health-color {
+    color: $MENU_HEALTH
+}
+
+.sav-color {
+    color: $MENU_SAV
+}
+
+.red-sublabel {
+    font-size: 0.45em;
+    color: $RED_BEABA;
+}
+
+.red-subtitle {
+    font-size: 0.9em!important;
+    color: $RED_BEABA!important;
+}
+
+.white-big-title {
+    color: $WHITE;
+    font-size: 1.4em;
+}
+
+.white-title {
+    color: $WHITE!important;
+    font-size: 1em!important;
+}
+
+.teal-title {
+    color: $TEAL_BEABA;
+    font-size: 1.4em;
+}
+
+.white-subtitle {
+    color: $WHITE;
+    font-size: 1.2em;
+}
+
+.gray-title {
+    color: $GRAY;
+    font-size: 1.2em;
+}
+
+.gray-label {
+    color: $GRAY;
+    font-size: 1em;
+}
+
+.red-label {
+    color: $RED_BEABA!important;
+    font-size: 1.1em!important;
+}
+
+.yellow-label {
+    color: $YELLOW_BEABA;
+    font-size: 1.1em;
+}
+
+.white-label {
+    color: $WHITE;
+    font-size: 1.1em;
+}
+
+.dark-title {
+    color: $DARK_GRAY;
+    font-size: 1.15em;
+    line-height: 1.2em;
+}
+
+.dark-label {
+    color: $DARK_GRAY;
+    font-size: 0.9em;
+    line-height: 1.2em;
+}
+
+.dark-label-title {
+    color: $DARK_GRAY;
+    font-size: 1em;
+}
+
+.gray-button-text {
+    color: $GRAY;
+    font-size: 1.3em;
+}
+
+.gray-small-title {
+    // recipe-span recipe title
+    font-size: 0.7em;
+    color: $GRAY;
+    line-height: 1.7em;
+}
+
+.recipe-span-info-text {
+    // recipe-span cooking info
+    color: $RED_BEABA;
+    font-size: 0.45em;
+}
+
+.home-tab-title {
+    font-size: 1em;
+}
+
+.red-title {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: $RED_BEABA;
+}
+
+.footer-subtitle {
+    color: $DARK_GRAY;
+    font-size: 0.8em;
+}
+
+.page-nav-header-title {
+    font-size: 1.3em;
+    color: $WHITE;
+}
+
+.white-info {
+    color: $WHITE;
+    font-size: 0.65em;
+    font-style: italic;
+}
+
+.white-recipe-title {
+    color: $WHITE;
+    font-size: 1.7em;
+}
+
+.white-recipe-subtitle {
+    color: $WHITE;
+    font-size: 0.8em;
+}
+
+.dark-gray-recipe-title {
+    color: $DARK_GRAY;
+    font-size: 1.7em;
+}
+
+.dark-gray-recipe-subtitle {
+    color: $DARK_GRAY;
+    font-size: 0.8em;
+}
+
+.dark-header-title {
+    color: $DARK_GRAY;
+    font-size: 1.5em;
+}
+
+.dark-header-subtitle {
+    color: $DARK_GRAY;
+    font-size: 1.3em;
+}
+
+@media screen and (min-width: 768px) {
+    .title {
+        font-size: 2.1em
+    }
+    .subtitle {
+        font-size: 1.8em
+    }
+    .label {
+        font-size: 1.6em
+    }
+    .red-sublabel {
+        font-size: 0.7em;
+    }
+    .red-subtitle {
+        font-size: 1.4em!important;
+    }
+    .white-big-title {
+        font-size: 2em;
+    }
+    .white-title {
+        font-size: large!important;
+    }
+    .teal-title {
+        font-size: 2em;
+    }
+    .white-subtitle {
+        font-size: 1.8em;
+    }
+    .gray-title {
+        font-size: 1.8em;
+    }
+    .gray-label {
+        font-size: 1.5em;
+    }
+    .red-label {
+        font-size: 1.7em;
+    }
+    .yellow-label {
+        font-size: 1.7em;
+    }
+    .white-label {
+        font-size: 1.8em;
+    }
+    .dark-title {
+        font-size: 1.85em;
+        line-height: 1.3em;
+    }
+    .dark-label {
+        font-size: 1.45em;
+        line-height: 1.3em;
+    }
+    .dark-label-title {
+        color: $DARK_GRAY;
+        font-size: 1.5em;
+    }
+    .gray-button-text {
+        font-size: 1.9em;
+    }
+    .gray-small-title {
+        font-size: 1.2em;
+    }
+    .recipe-span-info-text {
+        font-size: 0.7em;
+    }
+    .home-tab-title {
+        font-size: 1.5em;
+    }
+    .red-title {
+        font-size: 1.9em;
+    }
+    .footer-subtitle {
+        color: $DARK_GRAY;
+        font-size: 1.3em;
+    }
+    .page-nav-header-title {
+        font-size: 1.9em;
+    }
+    .white-info {
+        font-size: 1em;
+    }
+    .white-recipe-title {
+        color: $WHITE;
+        font-size: 2.5em;
+    }
+    .white-recipe-subtitle {
+        font-size: 1.3em;
+    }
+    .dark-gray-recipe-title {
+        font-size: 2.5em;
+    }
+    .dark-gray-recipe-subtitle {
+        font-size: 1.3em;
+    }
+    .dark-header-title {
+        font-size: 2.2em;
+    }
+    .dark-header-subtitle {
+        font-size: 1.9em;
+    }
+}

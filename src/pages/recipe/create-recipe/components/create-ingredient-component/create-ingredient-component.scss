@@ -1,0 +1,167 @@
+@import "~sass/styles.scss";
+:host {
+    width: 100%;
+    .create-ingredient-component {
+        position: relative;
+        width: 500px;
+    }
+    .add-ingredient {
+        width: 100%;
+        height: 50px;
+        margin: 15px 0;
+        border-radius: $BORDER_RADIUS;
+        background-color: $RED_BEABA;
+        font-size: 1.5em;
+        color: $WHITE;
+    }
+    .auto-completion {
+        bottom: 50px;
+        width: 100%;
+        z-index: 100;
+    }
+    .input-container {
+        position: relative;
+    }
+    .input {
+        width: 100%;
+        height: 50px;
+        margin: 15px 0;
+        border: unset;
+        border-radius: $BORDER_RADIUS;
+        text-align: center;
+        font-size: 1.5em;
+    }
+    .action-button {
+        height: 50px;
+        width: 150px;
+        margin: 15px 25px;
+        border-radius: $BORDER_RADIUS;
+        color: $WHITE;
+        font-size: 1.5em;
+    }
+    .cancel-button {
+        background-color: $RED_BEABA_SELECTED;
+    }
+    .confirm-button {
+        background-color: $GREEN_BEABA;
+    }
+    div#recipe-ingredients {
+        padding-top: 10px;
+        margin: 0 !important;
+        width: 100%;
+        p.dark-label-title {
+            text-align: center;
+        }
+        p.ingredients {
+            margin-bottom: 15px;
+            color: $RED_BEABA;
+            font-weight: 800;
+            font-size: 2em;
+            text-align: center;
+        }
+        div.item-inner {
+            padding: 0;
+        }
+        p.ingredient-quantity.cut-text {
+            width: fit-content;
+            white-space: nowrap !important;
+        }
+        .ingredient-list {
+            width: 100%;
+            margin: auto;
+            border-radius: $BORDER_RADIUS;
+            overflow: hidden;
+            div.ingredient {
+                height: 50px;
+                width: 100%;
+                font-size: 1.5em;
+                padding-right: 20px;
+                padding-left: 20px;
+                .ingredient-quantity {
+                    flex: 2 0 0;
+                }
+                .ingredient-name {
+                    flex: 4 0 0;
+                }
+                .remove-circle {
+                    flex: 1 0 0;
+                    background: unset;
+                    height: 100%;
+                    font-size: 1.5em;
+                }
+                background-color: $WHITE !important;
+            }
+        }
+    }
+    @media screen and (max-width: 768px) {
+        div.create-ingredient-component {
+            padding: 0 10px;
+            div#recipe-ingredients {
+                p.ingredients {
+                    font-size: 1.5em;
+                    margin-bottom: 10px;
+                }
+                div.ingredient-list {
+                    width: 200px;
+                    div.ingredient {
+                        height: 30px;
+                        font-size: 1.2em;
+                        padding: 0 15px;
+                        button.remove-circle {
+                            display: flex;
+                            justify-content: flex-end;
+                            ion-icon.cross-icon {
+                                font-size: 1em;
+                            }
+                        }
+                    }
+                }
+            }
+            button.add-ingredient {
+                width: 200px;
+                height: 30px;
+                margin: 10px 0;
+                font-size: 1em;
+            }
+            div.ingredient-form {
+                div.input-container {
+                    width: 100%;
+                    div.auto-completion {
+                        bottom: 35px;
+                        button.no-ingredient-label {
+                            box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.5);
+                            height: 30px;
+                        }
+                        div.ingredient-results {
+                            button.choice {
+                                box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.5);
+                                height: 30px;
+                            }
+                        }
+                        .spinner {
+                            box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.5);
+                            height: 30px !important;
+                        }
+                    }
+                }
+                .input {
+                    width: 200px !important;
+                    height: 30px !important;
+                    margin: 5px 0 !important;
+                    font-size: 1em !important;
+                }
+                button.action-button {
+                    height: 30px;
+                    width: 100px;
+                    margin: 15px 20px;
+                    font-size: 1em;
+                }
+            }
+        }
+    }
+    @media screen and (min-width: 769px) and (max-width: 1100px) {
+        div.create-ingredient-component {
+            width: 100%;
+        }
+    }
+}

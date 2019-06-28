@@ -1,0 +1,8 @@
+<div class="select-modal" (click)="backgroundClick()">
+    <div *ngIf="!translate && list && list.length > 0" class="scroll flex-column">
+        <button *ngFor="let element of list" (click)="form.setValue(element)">{{element}}</button>
+    </div>
+    <div *ngIf="translate && list && list.length > 0" class="scroll flex-column">
+        <button *ngFor="let element of list" (click)="form.setValue(element)">{{element | translate}}</button>
+    </div>
+</div>

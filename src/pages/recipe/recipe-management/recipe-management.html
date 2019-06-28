@@ -1,0 +1,73 @@
+<div class="recipe-management-header">
+    <locale-select *ngIf="authService.isSuperAdmin() || authService.isTranslator()" (onLocaleChangeEvent)="onLocaleChange($event)">
+    </locale-select>
+</div>
+<div class="recipe-management-table">
+    <ngx-datatable
+        #recipeMngTable
+        class="material expandable table-container"
+        [rows]="recipes"
+        [columns]="columns"
+        [sortType]="'multi'"
+        [columnMode]="'force'"
+        [headerHeight]="50"
+        [footerHeight]="50"
+        [rowHeight]="75"
+        [scrollbarV]="true"
+        [scrollbarH]="mobile? true : false">
+        <ng-template #cellActionTemplate [ngClass]="{mobile: mobile}" let-row="row" let-value="value" let-i="index">
+            <button (click)="onOpenRecipe(row)" (click)="onSeeRecipe(row)">{{ 'WEBSITE.COMMON.SEE' | translate }}</button>
+            <button *ngIf="authService.isAdmin() && sameLocale || authService.isSuperAdmin()" class="success-button" (click)="onApproveRecipe(row)">{{ 'WEBSITE.COMMON.APPROVE'| translate }}</button>
+            <button *ngIf="authService.isAdmin() && sameLocale || authService.isSuperAdmin()" class="edit-button" (click)="onEditRecipe(row)">{{ 'WEBSITE.COMMON.EDIT' | translate }}</button>
+            <button *ngIf="authService.isAdmin() && sameLocale || authService.isSuperAdmin()" class="danger-button" (click)="onRefuseRecipe(row)">{{ 'WEBSITE.COMMON.REJECT' | translate }}</button>
+        </ng-template>
+        <ngx-datatable-row-detail class="datatable-row-detail" [ngClass]="{mobile: mobile}" [rowHeight]="200">
+            <ng-template class="ng-template" let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+                <div class="ion-card" class="ion-card">
+                    <div *ngIf="indexApproveOrRefuse == 1" class="ion-card-content">
+                        <h1>{{ 'WEBSITE.COMMON.REJECT_RECIPE_TITLE' | translate }} : </h1>
+                        <h3>{{ 'WEBSITE.COMMON.REASON' | translate }} : </h3>
+                        <form>
+                            <input [formControl]="refusedReasonFormControl" type="text" placeholder="{{ 'WEBSITE.COMMON.REASON' | translate }}"/>
+                            <button class="reviews-management-button success-button" [disabled]="!refusedReasonFormControl.valid" (click)="onSendRefusedReason(row)">{{'WEBSITE.COMMON.SEND' | translate}}</button>
+                        </form>
+                    </div>
+                    <div *ngIf="indexApproveOrRefuse == 0" class="ion-card-content">
+                        <h1>{{ 'WEBSITE.COMMON.APPROVE_RECIPE_TITLE' | translate }} : </h1>
+                        <form>
+                            <div class="recipe-management-checkbox">
+                                <label>{{ 'WEBSITE.COMMON.APPROVE_APPLY_AUTO_BAKING_TIME' | translate}}</label>
+                                <input [formControl]="isBakingTimeAutoFormControl"type="checkbox"/>
+                            </div>
+                            <div class="recipe-management-checkbox">
+                                <label>{{ 'WEBSITE.COMMON.APPROVE_IS_FOR_PARENT_REFERENT' | translate}}</label>
+                                <input [formControl]="isForParentReferentFormControl"type="checkbox"/>
+                            </div>
+                            <div class="recipe-management-checkbox">
+                                <label>{{ 'WEBSITE.COMMON.APPROVE_IS_FOR_FUTURE_MOM' | translate}}</label>
+                                <input [formControl]="isForFutureMomFormControl"type="checkbox"/>
+                            </div>
+                            <button class="reviews-management-button success-button" (click)="onSendApprovedRecipe(row)">{{'WEBSITE.COMMON.APPROVE' | translate}}</button>
+                        </form>
+                    </div>
+                </div>
+            </ng-template>
+        </ngx-datatable-row-detail>
+    </ngx-datatable>
+</div>
+<div class="loader-container" *ngIf="loadingRecipes">
+    <div class="linear-container">
+      <div class="spinner"> <fa-icon [icon]="faSpinner" [spin]="true" size="2x" ></fa-icon> </div>
+
+      <h3>{{ 'WEBSITE.COMMON.LOADING' | translate }}</h3>
+    </div>
+</div>
+<!--<div class="loader-container" *ngIf="loadingRecipes">
+    <ion-spinner></ion-spinner>
+</div>
+<div class="empty-view-container" *ngIf="!loadingRecipes && recipes.length <= 0">
+    <div class="linear-container">
+        <h1>{{ 'RECIPE_MANAGEMENT.RECIPE_LIST.EMPTY_VIEW' | translate }}</h1>
+        <button class="reviews-button danger-button" (click)="reloadData()">{{ 'WEBSITE.COMMON.RELOAD' | translate }}</button>
+    </div>
+</div>-->

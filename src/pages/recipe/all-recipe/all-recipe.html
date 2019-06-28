@@ -1,0 +1,182 @@
+<div class="search-header search-header-desktop flex-row">
+    <form class="flex-row search-form max-width" [formGroup]="searchForm">
+        <div class="selected-ingredients" *ngIf="listIngredientSelected.length > 0">
+            <div class="selected-ingredient" *ngFor="let ingredient of listIngredientSelected">
+                <p class="cut-text">{{ ingredient.name }}</p>
+                <button class="remove-ingredient" (click)="removeIngredient(ingredient)">
+                    <fa-icon [icon]="faTimesCircle" ></fa-icon>
+                </button>
+            </div>
+        </div>
+
+        <div class="search-input">
+            <input (focus)="focus = true" (blur)="ingredientInputBlur()" formControlName="ingredient" placeholder="{{ 'RECIPE_MANAGEMENT.CREATE_RECIPE.STEP_INGREDIENTS_SELECTED' | translate }}">
+            <div class="auto-completion" *ngIf="focus && searchForm.controls.ingredient.value && searchForm.controls.ingredient.value.length > 0">
+                <button *ngIf="searching" class="spinner"> <fa-icon [icon]="faSpinner" [spin]="true" size="2x" ></fa-icon> </button>
+                <button class="no-ingredient-label" *ngIf="ingredientCompletion.length == 0 && searchForm.controls.ingredient.value.length > 0 && !searching"
+                    disabled>{{'RECIPE_MANAGEMENT.RECIPES_SEARCH.KEYWORD_NOT_FOUND' | translate}}</button>
+                <div class="ingredient-results" *ngIf="ingredientCompletion.length > 0 && !searching">
+                    <button class="choice" *ngFor="let ingredient of ingredientCompletion" (click)="selectIngredient(ingredient)">{{ingredient.name}}</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="select-section">
+            <div class="select-wrapper flex-row">
+                <select formControlName="salted">
+                    <option style="display: none;" [value]="null" disabled selected>{{ 'RECIPE_MANAGEMENT.RECIPES_SEARCH.SUGAR_OR_SALTED_TITLE' | translate }}</option>
+                    <option [value]="true">{{ 'RECIPE_TYPE.SALTED' | translate }}</option>
+                    <option [value]="false">{{ 'RECIPE_TYPE.SWEET' | translate }}</option>
+                </select>
+                <img class="select-arrow" src="assets/img/arrow-down-red.png">
+            </div>
+
+            <div class="select-wrapper flex-row">
+                <select formControlName="typeOfDish">
+                    <option style="display: none;" [value]="null" disabled selected>{{ 'RECIPE_MANAGEMENT.RECIPES_SEARCH.TYPE_OF_DISH_TITLE' | translate }}</option>
+                    <option *ngFor="let dishType of dishTypes" [value]="dishType">{{ DishType[dishType] | translate }}</option>
+                </select>
+                <img class="select-arrow" src="assets/img/arrow-down-red.png">
+            </div>
+
+            <div class="select-wrapper flex-row">
+                <select formControlName="season">
+                    <option style="display: none;" [value]="null" disabled selected>{{ 'RECIPE_MANAGEMENT.RECIPES_SEARCH.SEASON_TITLE' | translate }}</option>
+                    <option *ngFor="let season of seasons" [value]="season">{{ Season[season] | translate }}</option>
+                </select>
+                <img class="select-arrow" src="assets/img/arrow-down-red.png">
+            </div>
+
+            <div class="select-wrapper flex-row">
+                <select formControlName="sortOrder">
+                    <option style="display: none;" [value]="null" disabled selected>{{ 'RECIPE_MANAGEMENT.RECIPES_SEARCH.SORT_ORDER' | translate }}</option>
+                    <option *ngFor="let sortOption of sortOptions" [value]="sortOption.value">{{ sortOption.name | translate }}</option>
+                </select>
+                <img class="select-arrow" src="assets/img/arrow-down-red.png">
+            </div>
+
+            <div class="select-wrapper flex-row">
+                <select formControlName="ageRangeId">
+                    <option style="display: none;" [value]="null" disabled selected>{{ 'RECIPE_MANAGEMENT.RECIPES_SEARCH.AGES' | translate }}</option>
+                    <option *ngFor="let ageRangeId of ageRangeIds" [value]="ageRangeId">
+                        <span *ngIf="ageRangeId < AgeRangeId.TwentyFourMonthOrMore">
+                            {{ 'RECIPE_MANAGEMENT.FROM_TO' | translate : { ageMin: ageRanges[ageRangeId][0], ageMax: ageRanges[ageRangeId][1]} }}
+                        </span>
+                        <span *ngIf="ageRangeId == AgeRangeId.TwentyFourMonthOrMore">{{ 'RECIPE_MANAGEMENT.MORE_THAN_24_MONTHS' | translate }}</span>
+                        <span *ngIf="ageRangeId == AgeRangeId.PregnantMother ">{{ 'RECIPE_MANAGEMENT.FOR_PREGNANT_MOTHER' | translate }}</span>
+                    </option>
+                </select>
+                <img class="select-arrow" src="assets/img/arrow-down-red.png">
+            </div>
+        </div>
+
+        <div class="select-wrapper button-wrapper">
+            <button class="reset-button" type="reset" (click)="resetSearch()" [disabled]="!isResetCanBeEnabled" >{{ 'RECIPE_MANAGEMENT.RECIPES_SEARCH.RESET' | translate }}</button>
+        </div>
+
+    </form>
+</div>
+
+<div class="search-header search-header-mobile flex-column">
+    <div class="search-settings flex-row">
+        <button class="expand-search flex-row" (click)="showSearchOptions = !showSearchOptions">
+            <p class="search-label">{{ 'RECIPE_MANAGEMENT.RECIPES_SEARCH.TITLE_LABEL' | translate }}</p>
+            <img [ngClass]="{'expanded': showSearchOptions}" class="toogle-search" src="assets/img/arrow-down-white.png">
+        </button>
+    </div>
+    <form class="search-form mobile-form flex-column" [formGroup]="searchForm" [ngClass]="{'show': showSearchOptions}">
+        <div class="flex-column select-ingredient-container">
+            <div class="selected-ingredients" *ngIf="listIngredientSelected.length > 0">
+                <div class="selected-ingredient" *ngFor="let ingredient of listIngredientSelected">
+                    <p class="cut-text">{{ ingredient.name }}</p>
+                    <button class="remove-ingredient" (click)="removeIngredient(ingredient)">
+                        <fa-icon [icon]="faTimesCircle" ></fa-icon>
+                    </button>
+                </div>
+            </div>
+
+            <div class="search-input">
+                <input (focus)="focus = true" (blur)="ingredientInputBlur()" formControlName="ingredient" placeholder="{{ 'RECIPE_MANAGEMENT.CREATE_RECIPE.STEP_INGREDIENTS_SELECTED' | translate }}">
+                <div class="auto-completion" *ngIf="focus && searchForm.controls.ingredient.value && searchForm.controls.ingredient.value.length > 0">
+                    <button *ngIf="searching" class="spinner"> <fa-icon [icon]="faSpinner" [spin]="true" size="2x" ></fa-icon> </button>
+                    <button class="no-ingredient-label" *ngIf="ingredientCompletion.length == 0 && searchForm.controls.ingredient.value.length > 0 && !searching"
+                        disabled>{{'RECIPE_MANAGEMENT.RECIPES_SEARCH.KEYWORD_NOT_FOUND' | translate}}</button>
+                    <div class="ingredient-results" *ngIf="ingredientCompletion.length > 0 && !searching">
+                        <button class="choice" *ngFor="let ingredient of ingredientCompletion" (click)="selectIngredient(ingredient)">{{ingredient.name}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex-row select-container">
+
+            <div class="select-wrapper flex-row">
+                <select formControlName="salted">
+                    <option style="display: none;" [value]="null" disabled selected>{{ 'RECIPE_MANAGEMENT.RECIPES_SEARCH.SUGAR_OR_SALTED_TITLE' | translate }}</option>
+                    <option [value]="true">{{ 'RECIPE_TYPE.SALTED' | translate }}</option>
+                    <option [value]="false">{{ 'RECIPE_TYPE.SWEET' | translate }}</option>
+                </select>
+                <img class="select-arrow" src="assets/img/arrow-down-red.png">
+            </div>
+
+            <div class="select-wrapper flex-row">
+                <select formControlName="typeOfDish">
+                    <option style="display: none;" [value]="null" disabled selected>{{ 'RECIPE_MANAGEMENT.RECIPES_SEARCH.TYPE_OF_DISH_TITLE' | translate }}</option>
+                    <option *ngFor="let dishType of dishTypes" [value]="dishType">{{ DishType[dishType] | translate }}</option>
+                </select>
+                <img class="select-arrow" src="assets/img/arrow-down-red.png">
+            </div>
+
+            <div class="select-wrapper flex-row">
+                <select formControlName="season">
+                    <option style="display: none;" [value]="null" disabled selected>{{ 'RECIPE_MANAGEMENT.RECIPES_SEARCH.SEASON_TITLE' | translate }}</option>
+                    <option *ngFor="let season of seasons" [value]="season">{{ Season[season] | translate }}</option>
+                </select>
+                <img class="select-arrow" src="assets/img/arrow-down-red.png">
+            </div>
+
+            <div class="select-wrapper flex-row">
+                <select formControlName="sortOrder">
+                    <option style="display: none;" [value]="null" disabled selected>{{ 'RECIPE_MANAGEMENT.RECIPES_SEARCH.SORT_ORDER' | translate }}</option>
+                    <option *ngFor="let sortOption of sortOptions" [value]="sortOption.value">{{ sortOption.name | translate }}</option>
+                </select>
+                <img class="select-arrow" src="assets/img/arrow-down-red.png">
+            </div>
+
+            <div class="select-wrapper flex-row">
+                <select formControlName="ageRangeId">
+                    <option style="display: none;" [value]="null" disabled selected>{{ 'RECIPE_MANAGEMENT.RECIPES_SEARCH.AGES' | translate }}</option>
+                    <option *ngFor="let ageRangeId of ageRangeIds" [value]="ageRangeId">
+                        <span *ngIf="ageRangeId < AgeRangeId.TwentyFourMonthOrMore">
+                            {{ 'RECIPE_MANAGEMENT.FROM_TO' | translate : { ageMin: ageRanges[ageRangeId][0], ageMax: ageRanges[ageRangeId][1]} }}
+                        </span>
+                        <span *ngIf="ageRangeId == AgeRangeId.TwentyFourMonthOrMore">{{ 'RECIPE_MANAGEMENT.MORE_THAN_24_MONTHS' | translate }}</span>
+                        <span *ngIf="ageRangeId == AgeRangeId.PregnantMother ">{{ 'RECIPE_MANAGEMENT.FOR_PREGNANT_MOTHER' | translate }}</span>
+                    </option>
+                </select>
+                <img class="select-arrow" src="assets/img/arrow-down-red.png">
+            </div>
+        </div>
+
+        <div class="select-wrapper button-wrapper">
+            <button class="reset-button" type="reset" (click)="resetSearch()" [disabled]="!isResetCanBeEnabled">{{ 'RECIPE_MANAGEMENT.RECIPES_SEARCH.RESET' | translate }}</button>
+        </div>
+    </form>
+</div>
+
+<div [formGroup]="translateFormGroup" class="translator-lang-selection" *ngIf="authService.isSuperTranslator() || authService.isTranslator()">
+    <label class="language-label">{{ 'WEBSITE.COMMON.CHOOSE_LANG' | translate }}</label>
+    <select (change)="onLocaleChange($event)" formControlName="recipeLocaleFormControl">
+        <option value="{{ locale.locale }}"  *ngFor="let locale of locales">{{ locale.name }}</option>
+    </select>
+</div>
+
+<div class="all-recipe-body" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="100" (scrolled)="onScroll()">
+    <div class="recipe-item-container max-width">
+        <div class="recipe-item" *ngFor="let recipe of recipes">
+            <recipe-item-component-website [recipe]="recipe" (click)="onSelectRecipe(recipe.id)"></recipe-item-component-website>
+        </div>
+        <button *ngIf="searchingRecipes" class="spinner"> <fa-icon [icon]="faSpinner" [spin]="true" size="2x" ></fa-icon> </button>
+
+    </div>
+</div>

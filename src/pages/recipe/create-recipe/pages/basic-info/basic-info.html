@@ -1,0 +1,14 @@
+<div class="create-beaba-recipe-page">
+    <create-recipe-basic-form-component *ngIf="basicInfo" [basicInfo]="basicInfo" (valid)="basicInfoValid=$event"></create-recipe-basic-form-component>
+</div>
+
+<div class="nav-footer padding">
+    <button class="nav-footer-button cancel-button">
+        <p>{{ 'BEABA_MODAL_COMPONENT.CANCEL_BUTTON' | translate }}</p>
+        <img class="cancel-icon" src="assets/img/white-cross.png">
+    </button>
+    <button [disabled]="!basicInfo.valid || !basicInfoValid" class="nav-footer-button red-button flex-row" (click)="nextPage()">
+        <p class="gray-button-text">{{ 'ACCOUNT_MANAGEMENT.CREATE_ACCOUNT.NEXT_STEP' | translate }}</p>
+        <img src="assets/img/white-arrow-right.png">
+    </button>
+</div>

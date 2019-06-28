@@ -1,0 +1,164 @@
+.alert-md,
+.alert-ios {
+    .alert-head {
+        .alert-title {
+            text-align: center;
+            font-size: 1.4em;
+            padding-top: 10px;
+        }
+    }
+    .alert-input:focus {
+        border-bottom: 2px solid white !important;
+    }
+}
+
+.red-alert {
+    .alert-title {
+        padding-top: 0!important;
+        color: white !important;
+    }
+    div.alert-wrapper {
+        background-color: $RED_BEABA !important;
+    }
+    button.alert-button {
+        .button-inner {
+            color: $RED_BEABA;
+        }
+    }
+    h3 {
+        color: white !important;
+    }
+}
+
+.teal-alert {
+    .alert-title {
+        padding-top: 0!important;
+        color: white !important;
+    }
+    div.alert-wrapper {
+        background-color: $TEAL_BEABA !important;
+    }
+    button.alert-button {
+        .button-inner {
+            color: $TEAL_BEABA;
+        }
+    }
+    h3 {
+        color: white !important;
+    }
+}
+
+.beaba-alert {
+    .alert-radio-button-default {
+        min-height: 2em!important;
+    }
+    .alert-radio-label {
+        padding: 0!important;
+    }
+    .button-inner {
+        min-height: fit-content;
+        min-width: fit-content;
+        text-align: center;
+    }
+    .alert-wrapper {
+        border-radius: 0.7em !important;
+        width: 300px !important;
+        max-width: 300px !important;
+        background-color: $TEAL_BEABA !important;
+    }
+    .alert-title {
+        color: white;
+    }
+    .alert-message {
+        padding: 0px !important;
+        max-height: 0px !important;
+    }
+    .alert-radio[aria-checked='true'] {
+        .alert-radio-label {
+            font-weight: 900;
+            opacity: 1;
+            font-size: 1.1em;
+        }
+    }
+    .alert-radio-group {
+        border: unset !important;
+        max-height: 132px !important;
+    }
+    .alert-radio-label {
+        text-align: center;
+        color: $WHITE!important;
+        opacity: 0.8;
+    }
+    .alert-radio-icon,
+    alert-radio-inner {
+        min-width: 0px !important;
+        max-width: 0px !important;
+        width: 0px !important;
+        display: none!important;
+    }
+    .alert-button-group {
+        align-items: center !important;
+        justify-content: center !important;
+        flex-direction: row;
+        flex-wrap: unset !important;
+        padding-bottom: 20px!important;
+         :first-child {
+            border: unset;
+            margin-right: 6px !important;
+        }
+         :last-child {
+            border: unset;
+            margin-left: 6px !important;
+        }
+    }
+    .alert-button {
+        min-width: 96px !important;
+        height: 48px !important;
+        padding: 8px;
+        flex: unset !important;
+        text-transform: initial!important;
+        .button-inner {
+            width: 100px !important;
+            height: 32px !important;
+            font-weight: 400;
+            font-size: 1em;
+            color: $TEAL_BEABA;
+            background-color: white;
+            border-radius: $BORDER_RADIUS;
+            justify-content: center!important;
+        }
+    }
+    .alert-input {
+        color: white !important;
+    }
+    .alert-input::placeholder {
+        color: whitesmoke;
+        opacity: 1;
+    }
+}
+
+.select-alert {
+    div.alert-wrapper {
+        border-radius: 10px !important;
+        background-color: $RED_BEABA !important;
+        div.alert-radio-label {
+            color: #ffffff !important;
+        }
+        div.alert-radio-icon {
+            border-color: #ffffff !important;
+        }
+        div.alert-radio-inner {
+            background-color: $LIME_GREEN_BEABA !important;
+            border-color: $LIME_GREEN_BEABA !important;
+        }
+        .alert-radio-button-ios div.alert-radio-inner {
+            background-color: transparent !important;
+        }
+        [aria-checked=true] .alert-radio-icon {
+            border-color: $LIME_GREEN_BEABA !important;
+        }
+        span.button-inner {
+            color: #ffffff;
+        }
+    }
+}

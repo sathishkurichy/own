@@ -1,0 +1,55 @@
+<div *ngIf="!error && recipe">
+    <form [formGroup]="translateFormGroup">
+        <div class="translator-header">
+            <p>{{ 'WEBSITE.TITLE.TRANSLATE_RECIPE' | translate }}</p>
+        </div>
+        <div class="translator-lang-selection" *ngIf="recipe">
+            <label class="language-label">{{ 'WEBSITE.COMMON.CHOOSE_LANG' | translate }}</label>
+            <select (change)="onLocaleChange()" formControlName="recipeLocaleFormControl">
+                <option value="{{ locale.locale }}"  *ngFor="let locale of locales">{{ locale.name }}</option>
+            </select>
+        </div>
+        <div class="translator-body">
+            <div class="body-part">
+                <h1>{{ 'WEBSITE.COMMON.AUTHOR' | translate }} : </h1>
+                <h3 *ngIf="recipe">{{ recipe.author }}</h3>
+                <div class="divider"></div>
+                <h1>{{ 'WEBSITE.COMMON.RECIPE_NAME' | translate }} : </h1>
+                <input formControlName="recipeNameFormControl" type="text" />
+                <div class="divider"></div>
+            </div>
+            <div class="body-part">
+                <h1>{{ 'WEBSITE.COMMON.STEPS' | translate }} : </h1>
+                <div *ngIf="recipe !== undefined">
+                    <div class="step-container" *ngFor="let step of recipe.steps">
+                        <div class="ion-card" *ngIf="step.freeInstruction">
+                            <div class="ion-card-content">
+                                <h2 class="step-header">{{ 'WEBSITE.COMMON.STEP' | translate }} {{ step.stepIndex }} <span class="small" *ngIf="step.ingredient">{{ 'WEBSITE.COMMON.FOR_INGREDIENT' | translate }} "{{ step.ingredient.name }}"</span></h2>
+                                <p>{{ 'WEBSITE.COMMON.FREE_INSTRUCTION' | translate }}</p>
+                                <input [formControlName]="'freeInstructionStep' + step.id" type="text"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="translator-valid-container" *ngIf="recipe">
+            <button class="translator-valid-button edit-button" [disabled]="!saving && !isValid" (click)="onTraductClick()">{{ 'WEBSITE.COMMON.TRANSLATE' | translate }}</button>
+        </div>
+    </form>
+</div>
+<div class="loader-container" >
+    <div class="linear-container" *ngIf="loadingLocale || loadingRecipe">
+        <!--<ion-spinner></ion-spinner>-->
+      <div class="spinner"> <fa-icon [icon]="faSpinner" [spin]="true" size="2x" ></fa-icon> </div>
+
+      <h3>{{ 'WEBSITE.COMMON.LOADING' | translate }}</h3>
+    </div>
+</div>
+<div class="error-container" *ngIf="error">
+    <div class="linear-container">
+        <h1>{{ 'RECIPE_MANAGEMENT.RECIPE_LIST.EMPTY_VIEW' | translate }}</h1>
+        <button class="reviews-management-button danger-button" (click)="reloadData()">{{ 'WEBSITE.COMMON.RELOAD' | translate }}</button>
+    </div>
+</div>

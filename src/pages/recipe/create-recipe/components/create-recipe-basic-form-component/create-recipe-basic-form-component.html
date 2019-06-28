@@ -1,0 +1,101 @@
+<div class="nav-header">
+    <p class="page-nav-header-title">{{'RECIPE_MANAGEMENT.CREATE_RECIPE.CREATE_RECIPE' | translate}}</p>
+</div>
+<div class="background">
+    <form [formGroup]="basicInfo">
+
+        <div class="section name-section">
+            <p class="white-subtitle">{{'RECIPE_MANAGEMENT.CREATE_RECIPE.RECIPE_NAME' | translate}}</p>
+            <input formControlName="name" class="input-title" placeholder="{{ 'RECIPE_MANAGEMENT.CREATE_RECIPE.NAME_PLACEHOLDER' | translate }}"
+            />
+        </div>
+
+        <div class="section duration-section">
+            <div class="preparation-label">
+                <p class="section-title white-subtitle">{{'RECIPE_MANAGEMENT.CREATE_RECIPE.PREPARATION_TIME' | translate}}</p>
+                <p class="section-title white-recipe-subtitle">{{'RECIPE_MANAGEMENT.CREATE_RECIPE.IN_MINUTES' | translate}}</p>
+            </div>
+            <input type="number" formControlName="duration" min="0">
+        </div>
+
+        <div class="section center-selection-section sugar-or-salted-section">
+            <p class="section-title white-subtitle">{{'RECIPE_MANAGEMENT.RECIPES_SEARCH.SUGAR_OR_SALTED_TITLE' | translate}}</p>
+            <div class="radio-group flex-row">
+
+                <input type="radio" [value]="true" formControlName="isSalted" id="salted1">
+                <label class="radio-label" for="salted1">
+                    <p class="red-title">{{'RECIPE_MANAGEMENT.RECIPES_SEARCH.SALTED_LABEL' | translate}}</p>
+                </label>
+
+                <input type="radio" [value]="false" formControlName="isSalted" id="salted2">
+                <label class="radio-label" for="salted2">
+                    <p class="red-title">{{'RECIPE_MANAGEMENT.RECIPES_SEARCH.SUGAR_LABEL' | translate}}</p>
+                </label>
+
+            </div>
+        </div>
+
+        <div class="section center-selection-section type-of-dish-section">
+            <p class="section-title white-subtitle">{{'RECIPE_MANAGEMENT.RECIPES_SEARCH.TYPE_OF_DISH_TITLE' | translate}}</p>
+            <div class="radio-group flex-row">
+                <input type="radio" [checked]="basicInfo.controls.dishTypeId.value == '1'" [value]="1" formControlName="dishTypeId" id="dishType1">
+                <label class="radio-label" for="dishType1">
+                    <p class="red-title">{{'DISH_TYPE.SOUP' | translate}}</p>
+                </label>
+
+                <input type="radio" [checked]="basicInfo.controls.dishTypeId.value == '2'" [value]="2" formControlName="dishTypeId" id="dishType2">
+                <label class="radio-label" for="dishType2">
+                    <p class="red-title">{{'DISH_TYPE.MAIN_DISH' | translate}}</p>
+                </label>
+
+                <input type="radio" [checked]="basicInfo.controls.dishTypeId.value == '3'" [value]="3" formControlName="dishTypeId" id="dishType3">
+                <label class="radio-label" for="dishType3">
+                    <p class="red-title">{{'DISH_TYPE.DESERT' | translate}}</p>
+                </label>
+
+                <input type="radio" [checked]="basicInfo.controls.dishTypeId.value == '4'" [value]="4" formControlName="dishTypeId" id="dishType4">
+                <label class="radio-label" for="dishType4">
+                    <p class="red-title">{{'DISH_TYPE.DRINK' | translate}}</p>
+                </label>
+
+                <input type="radio" [checked]="basicInfo.controls.dishTypeId.value == '5'" [value]="5" formControlName="dishTypeId" id="dishType5">
+                <label class="radio-label" for="dishType5">
+                    <p class="red-title">{{'DISH_TYPE.OTHER' | translate}}</p>
+                </label>
+            </div>
+        </div>
+
+        <div class="section season-section">
+            <p class="section-title white-subtitle">{{'RECIPE_MANAGEMENT.RECIPES_SEARCH.SEASON_TITLE' | translate}}</p>
+            <div class="flex-row checkbox-group">
+                <input type="checkbox" formControlName="spring" id="spring">
+                <label class="checkbox-label" for="spring">
+                    <p class="red-title bold">{{'RECIPE_MANAGEMENT.RECIPES_SEARCH.SPRING_LABEL' | translate}}</p>
+                </label>
+
+                <input type="checkbox" formControlName="summer" id="summer">
+                <label class="checkbox-label" for="summer">
+                    <p class="red-title bold">{{'RECIPE_MANAGEMENT.RECIPES_SEARCH.SUMMER_LABEL' | translate}}</p>
+                </label>
+
+                <input type="checkbox" formControlName="fall" id="fall">
+                <label class="checkbox-label" for="fall">
+                    <p class="red-title bold">{{'RECIPE_MANAGEMENT.RECIPES_SEARCH.AUTUMN_LABEL' | translate}}</p>
+                </label>
+
+                <input type="checkbox" formControlName="winter" id="winter">
+                <label class="checkbox-label" for="winter">
+                    <p class="red-title bold">{{'RECIPE_MANAGEMENT.RECIPES_SEARCH.WINTER_LABEL' | translate}}</p>
+                </label>
+            </div>
+        </div>
+
+        <div class="section picture-section">
+            <input [disabled]="disabledButton" type="file" id="picture" (change)="pictureChange($event)" style="display:none" accept=".jpg, .jpeg, .png">
+            <p class="white-subtitle">{{'RECIPE_MANAGEMENT.CREATE_RECIPE.RECIPE_PICTURE' | translate}}</p>
+            <label for="picture" class="no-picture-icon flex-row">
+                <img class="picture-icon" src="assets/img/open-files.png">
+            </label>
+        </div>
+    </form>
+</div>

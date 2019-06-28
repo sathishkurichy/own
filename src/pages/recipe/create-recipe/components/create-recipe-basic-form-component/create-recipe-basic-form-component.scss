@@ -1,0 +1,163 @@
+@import "~sass/styles.scss";
+:host {
+    .web-padding {
+        padding: 0 10vw;
+    }
+    div.nav-header {
+        height: 45px;
+        display: flex;
+        align-items: center;
+        background-color: $RED_BEABA;
+        p {
+            width: 925px;
+            margin: auto;
+        }
+    }
+    div.background {
+        background-color: $RED_SEMI_LIGHT;
+        width: 100%;
+    }
+    form {
+        min-height: calc(100vh - 300px);
+        width: 925px;
+        margin: auto;
+    }
+    div.section {
+        display: flex;
+        flex-direction: row;
+        padding: 20px 0;
+    }
+    .section p.white-subtitle,
+    .duration-section div.preparation-label,
+    .sugar-or-salted-section p.white-subtitle,
+    .picture-section p.white-subtitle {
+        width: 250px;
+    }
+    .type-of-dish-section p.white-subtitle,
+    .season-section p.white-subtitle {
+        width: 150px;
+    }
+    div.radio-icon,
+    div.checkbox-icon {
+        display: none !important;
+    }
+    .checkbox-group,
+    .radio-group {
+        input {
+            display: none;
+        }
+        label {
+            box-shadow: $BOX_SHADOW;
+            height: 38px;
+            width: 140px;
+            background-color: rgba(255, 255, 255, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: $BORDER_RADIUS;
+            margin-right: 15px;
+        }
+    }
+    .checkbox-group input[type="checkbox"]:checked+label,
+    .radio-group input[type="radio"]:checked+label {
+        background-color: $GREEN_BEABA;
+        p {
+            color: $WHITE;
+        }
+    }
+    .name-section {
+        input {
+            height: 38px;
+            width: 220px;
+            font-size: 1.2em;
+            border: unset;
+            text-align: center;
+            border-radius: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+    }
+    .duration-section {
+        .preparation-label {
+            position: relative;
+            .white-recipe-subtitle {
+                position: absolute;
+            }
+        }
+        input {
+            height: 38px;
+            width: 60px;
+            border: unset;
+            background-color: $WHITE;
+            border-radius: $BORDER_RADIUS;
+            box-shadow: $BOX_SHADOW;
+            font-size: 1.2em;
+            text-align: center;
+        }
+    }
+    .picture-section {
+        label {
+            img {
+                height: 38px;
+                width: 140px;
+            }
+        }
+    }
+    @media screen and (max-width: 768px) {
+        div.nav-header{
+            p.page-nav-header-title{
+                padding-left: 15px;
+            }
+        }
+        form {
+            div.section {
+                p.white-subtitle,
+                p.white-recipe-subtitle {
+                    text-align: center;
+                    width: 100%;
+                }
+                div.radio-group,
+                div.checkbox-group {
+                    width: 100%;
+                    justify-content: space-around;
+                }
+            }
+            div.name-section {
+                width: 100%;
+                justify-content: center;
+            }
+            div.duration-section {
+                div.preparation-label {
+                    height: 40px;
+                }
+            }
+            div.picture-section {
+                label.no-picture-icon {
+                    width: 100%;
+                    img.picture-icon {
+                        margin: 5px auto;
+                    }
+                }
+            }
+        }
+    }
+    @media screen and (max-width: 925px) {
+        form,
+        .nav-header p {
+            width: auto;
+        }
+        div.section {
+            flex-wrap: wrap;
+            div.radio-group,
+            div.checkbox-group {
+                flex-wrap: wrap;
+                label {
+                    margin: 5px;
+                }
+            }
+        }
+    }
+}
+
+@supports (-ms-ime-align: auto) {
+    background-color: transparent !important;
+}

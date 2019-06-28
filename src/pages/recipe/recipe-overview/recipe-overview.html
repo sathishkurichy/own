@@ -1,0 +1,201 @@
+<div class="recipe-overview-page">
+    <div class="recipe-overview-header flex-row" *ngIf="isSuperiorThanParent()">
+        <button [disabled]="disabledButton" *ngIf="authService.isTranslator()" (click)="translateRecipe()">{{'WEBSITE.COMMON.TRANSLATE' | translate}}</button>
+        <button [disabled]="disabledButton" *ngIf="perso" (click)="removeRecipe()">{{'WEBSITE.COMMON.REMOVE' | translate}}</button>
+        <button [disabled]="disabledButton" (click)="canWeShowShare()">{{'SHOPPING_LIST.SHARE' | translate}}</button>
+
+        <!-- EDITION DISABLED (API NOT READY) -->
+         <button [disabled]="disabledButton" *ngIf="perso || authService.isAdmin()" (click)="editRecipe()">{{'WEBSITE.COMMON.EDIT' | translate}}</button>
+
+        <!-- <button [disabled]="disabledButton" *ngIf="(authService.isParent() || authService.isAdmin()) && !perso && !recipe.favorite"
+            (click)="addToFavorite()">{{'WEBSITE.RECIPE.ADD_TO_FAVORITE' | translate}}</button> 
+        <button [disabled]="disabledButton" *ngIf="(authService.isParent() || authService.isAdmin()) && !perso && recipe.favorite"
+            (click)="removeFromFavorite()">{{'WEBSITE.RECIPE.REMOVE_FROM_FAVORITE' | translate}}</button>-->
+        <button [disabled]="disabledButton" *ngIf="(authService.isParent() || authService.isAdmin()) && perso && recipe.status == 1"
+            (click)="sumbmitRecipe()">{{'WEBSITE.RECIPE.SUBMIT' | translate}}</button>
+        <button [disabled]="disabledButton" *ngIf="authService.isAdmin() && recipe.status == 3"
+        (click)="unpublishRecipe()">{{'WEBSITE.RECIPE.UNPUBLISH' | translate}}</button>
+    </div>
+
+    <div class="card-container">
+
+        <div class="recipe-picture">
+            <img [src]="thumbnail" onerror="this.src = 'assets/img/placeholder.jpg'">
+            <button class="score" (click)="changeFavoriteState()">
+                <img class="score-icon" [src]="recipe.favorite? 'assets/img/fav-star-green.png' : 'assets/img/fav-star-grey.png'" />
+                <p class="score-label">{{recipe.score}}</p>
+            </button>
+        </div>
+
+        <div class="recipe-ingredients">
+
+            <!-- <button [disabled]="disabledButton" *ngIf="!perso" class="score-icon-container" (click)="changeFavoriteState()">
+                <div [ngClass]="{'star-big': recipe.score > 99}" class="score-icon-container">
+                    <img class="score-icon" src="assets/img/fav-star-grey.png">
+                    <p class="score">{{recipe.score}}</p>
+                </div>
+            </button> -->
+
+            <p class="recipe-title">{{recipe.name}}</p>
+            <div class="recipe-author-div">
+                <p class="recipe-author">- {{'RECIPE_MANAGEMENT.RECIPES_DETAIL.BY_AUTHOR' | translate}} {{recipe.author}} -</p>
+                <svg xmlns="http://www.w3.org/2000/svg" *ngIf="recipe.isParentReferent" viewBox="0 0 69.21 58.69"><title>{{ 'WEBSITE.COMMON.USER.IS_PARENT_REFERENT' | translate }}</title><g id="Layer_2" data-name="Layer 2"><g id="Calque_1" data-name="Calque 1"><path d="M58.39,40.11a7,7,0,0,0,2.41-.43c5.44-2,8.23-10.16,8.34-10.51A1.34,1.34,0,0,0,69,28a1.36,1.36,0,0,0-1-.61c-4.2-.36-7.62.33-10.2,2a35.41,35.41,0,0,0,.38-3.93h.07A6.87,6.87,0,0,0,63,23.68C67,20.08,66.59,12.36,66.57,12a1.35,1.35,0,0,0-1.8-1.2,14.81,14.81,0,0,0-7.33,5c-.18-.93-.36-1.67-.5-2.19a6.47,6.47,0,0,0,1.13-5C57.15,3.78,50.62.3,50.34.16a1.32,1.32,0,0,0-1.18,0A1.34,1.34,0,0,0,48.4,1c-1,4-.67,7.31,1,9.88a9.51,9.51,0,0,0,5.09,3.9,38.28,38.28,0,0,1,1,7.12,23.77,23.77,0,0,0-7.59-5.53,1.35,1.35,0,0,0-1.71,1c-.93,4.83-.34,8.77,1.73,11.71a11.1,11.1,0,0,0,6.25,4.28,58.31,58.31,0,0,1-2.58,6C50.44,34,44.69,29.25,44.42,29a1.35,1.35,0,0,0-1.16-.28,1.39,1.39,0,0,0-.92.75c-2.14,4.6-2.56,8.71-1.23,12.21A11.57,11.57,0,0,0,45.22,47a35.15,35.15,0,0,1-6.15,4.19,7.37,7.37,0,0,0,.68-3c0-4.23-4.14-7.47-4.31-7.61a1.35,1.35,0,0,0-1.66,0c-.17.14-4.31,3.38-4.31,7.61a7.59,7.59,0,0,0,.68,3A36.49,36.49,0,0,1,24,47a11.61,11.61,0,0,0,4.11-5.29c1.32-3.5.91-7.6-1.24-12.2a1.34,1.34,0,0,0-.92-.75,1.38,1.38,0,0,0-1.16.27c-.27.23-6,5-7.12,10.44a59.31,59.31,0,0,1-2.58-6,11.21,11.21,0,0,0,6.24-4.29c2.07-2.94,2.65-6.88,1.72-11.71a1.33,1.33,0,0,0-.62-.9,1.35,1.35,0,0,0-1.09-.14,23.89,23.89,0,0,0-7.59,5.53,39.31,39.31,0,0,1,1-7.12,9.51,9.51,0,0,0,5.09-3.9C21.47,8.35,21.78,5,20.79,1A1.34,1.34,0,0,0,20,.13a1.32,1.32,0,0,0-1.18,0c-.28.14-6.8,3.63-7.72,8.55a6.45,6.45,0,0,0,1.13,5c-.13.52-.31,1.27-.49,2.19a14.84,14.84,0,0,0-7.34-5,1.35,1.35,0,0,0-1.8,1.2c0,.33-.37,8.05,3.55,11.65A6.85,6.85,0,0,0,11,25.52h.07a35.47,35.47,0,0,0,.38,3.92c-2.58-1.71-6-2.39-10.19-2a1.36,1.36,0,0,0-1,.61,1.35,1.35,0,0,0-.15,1.17C.19,29.54,3,37.74,8.42,39.7a7.19,7.19,0,0,0,2.41.42,7.92,7.92,0,0,0,3.62-.93c.37.74,2.21,3.76,2.76,4.51-3.12-.45-7.16.17-12.18,3.22A1.34,1.34,0,0,0,4.77,49c.29.3,7,7,13.54,7,.33,0,.66,0,1-.05a9,9,0,0,0,6.57-4.24A42.34,42.34,0,0,0,31,54.64c-1.54.51-3.14,1-4.82,1.38a1.35,1.35,0,0,0,.32,2.67,1.86,1.86,0,0,0,.33,0,64.36,64.36,0,0,0,7.8-2.44,63.34,63.34,0,0,0,7.81,2.43,1.24,1.24,0,0,0,.33,0A1.35,1.35,0,0,0,43.07,56c-1.68-.42-3.28-.87-4.82-1.38a41.8,41.8,0,0,0,5.11-2.88A8.92,8.92,0,0,0,49.93,56c.33,0,.66,0,1,0,6.58,0,13.24-6.75,13.54-7a1.4,1.4,0,0,0,.37-1.12,1.35,1.35,0,0,0-.64-1c-5-3-9.06-3.66-12.18-3.22.55-.74,2.39-3.76,2.75-4.5a8,8,0,0,0,3.63.93Zm5.45-26c-.16,2.41-.79,5.85-2.64,7.55a4.24,4.24,0,0,1-3,1.11c-.22-1.8,0-5.94,5.61-8.66ZM58.11,32.63A11.49,11.49,0,0,1,65.85,30h.06c-1.12,2.5-3.27,6.14-6,7.14A4.75,4.75,0,0,1,56,36.76c0-.25.86-3.06,2.14-4.13ZM54.78,12l0,0a6.73,6.73,0,0,1-3.11-2.58,8.67,8.67,0,0,1-1-6C52.53,4.81,55,7,55.41,9.2A3.78,3.78,0,0,1,54.78,12ZM11,22.81a4.18,4.18,0,0,1-3-1.1C6.15,20,5.52,16.57,5.36,14.16,11,16.87,11.2,21,11,22.81ZM9.34,37.16c-2.75-1-4.91-4.64-6-7.14h0c3.38,0,6,.88,7.75,2.63a7.56,7.56,0,0,1,1.71,2.6c.07.2.39,1.28.42,1.52a4.73,4.73,0,0,1-3.9.39ZM13.79,9.22c.42-2.26,2.87-4.4,4.74-5.69a8.78,8.78,0,0,1-1,5.92,6.7,6.7,0,0,1-3.14,2.61h0a3.74,3.74,0,0,1-.64-2.83Zm.32,17.56c.58-3,4.17-5.57,6.57-7,.34,3.21-.17,5.83-1.54,7.78a8.35,8.35,0,0,1-4.26,3.12,6,6,0,0,1-.77-3.91ZM19,53.32c-4.09.45-8.77-3.06-11-5,3.93-2.06,7.4-2.43,10.48-1.57a10.81,10.81,0,0,1,4.93,3.76A6.14,6.14,0,0,1,19,53.32Zm3-8.21a6.15,6.15,0,0,1-1.78-3.79c-.12-3.44,3.09-7.08,5-8.94,1.18,3.17,1.33,6,.45,8.34A9.15,9.15,0,0,1,22,45.11Zm12.65,7.77c-1-1-2.44-2.78-2.44-4.71s1.46-3.75,2.43-4.72c1,1,2.43,2.77,2.43,4.72s-1.46,3.74-2.42,4.71Zm9-12.17c-.88-2.36-.73-5.16.45-8.34,1.87,1.86,5,5.49,5,8.94a5,5,0,0,1-1.44,3.44l-.17.18-.17.17a9.15,9.15,0,0,1-3.63-4.39Zm17.6,7.61c-2.54,2.2-7.17,5.41-11,5a6.15,6.15,0,0,1-4.43-2.78,13.19,13.19,0,0,1,4.93-3.77c3-1,6.56-.49,10.5,1.56ZM50.09,27.6c-1.38-2-1.9-4.59-1.56-7.82,2.4,1.42,5.82,4,6.57,7a6.52,6.52,0,0,1-.77,3.91,8.31,8.31,0,0,1-4.24-3.08Z"/></g></g></svg>
+            </div>
+            <div class="separator"></div>
+
+            <p class="title">{{'RECIPE_MANAGEMENT.RECIPES_DETAIL.INGREDIENTS' | translate}}</p>
+
+            <div class="table flex-row">
+                <div class="ingredient flex-row" *ngFor="let ingredient of recipe.ingredients">
+                    <p class="cut-text">{{ ingredient.quantity}}{{ingredient.unit}}</p>
+                    <p class="cut-text ingredient-name">{{ingredient.name}}</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="recipe-nutrition" [ngStyle]="{'width': perso? '100%' : '44.5vw'}">
+            <div class="flex-row title-container">
+                <img class="icon" src="assets/img/did-you-know.png" />
+                <p class="title">{{ 'RECIPE_MANAGEMENT.RECIPES_DETAIL.TIP_TITLE' | translate }}</p>
+            </div>
+
+            <p class="info-nutrition" *ngIf="child.id != -1">{{ 'RECIPE_MANAGEMENT.RECIPES_DETAIL.NUTRITION_INFO' | translate }}</p>
+            <p class="info-nutrition" *ngIf="child.id == -1">{{ 'RECIPE_MANAGEMENT.RECIPES_DETAIL.NUTRITION_INFO_100G' | translate }}</p>
+
+            <div class="flex-row nutrition-table">
+                <div class="table-column">
+                    <p class="quantity">{{ Math.round(recipe.protein)}}{{ 'UNIT.GRAM_SIGLE' | translate }}</p>
+                    <p>{{ 'RECIPE_MANAGEMENT.RECIPES_DETAIL.PROTEINS' | translate }}</p>
+                    <div class="border-right"></div>
+                </div>
+                <div class="table-column">
+                    <p class="quantity">{{ Math.round(recipe.carbohydrate) }}{{ 'UNIT.GRAM_SIGLE' | translate }}</p>
+                    <p>{{ 'RECIPE_MANAGEMENT.RECIPES_DETAIL.GLUCIDS' | translate }}</p>
+                    <div class="border-right"></div>
+                </div>
+                <div class="table-column">
+                    <p class="quantity">{{ Math.round(recipe.lipid) }}{{ 'UNIT.GRAM_SIGLE' | translate }}</p>
+                    <p>{{ 'RECIPE_MANAGEMENT.RECIPES_DETAIL.LIPIDS' | translate }}</p>
+                    <div class="border-right"></div>
+                </div>
+                <div class="table-column">
+                    <p class="quantity">{{ Math.round(recipe.energy) }}{{ 'UNIT.KCAL_SIGLE' | translate }}</p>
+                    <p>{{ 'RECIPE_MANAGEMENT.RECIPES_DETAIL.ENERGY' | translate }}</p>
+                </div>
+            </div>
+
+            <p class="nutrition-tip">{{ nutritionalTip }}</p>
+
+        </div>
+
+        <div *ngIf="!perso" class="recipe-portion">
+            <!-- <p *ngIf="child.id != -1" class="recommended-portion">{{ 'RECIPE_MANAGEMENT.RECIPES_DETAIL.PORTION_FOR' | translate }} {{child.name}} :</p> -->
+
+            <div class="flex-row recipe-form">
+                <div class="flex-column input-container">
+                    <div class="table-header flex-column">
+                        <p class="field cut-text">{{ 'RECIPE_MANAGEMENT.RECIPES_DETAIL.TEXTURE' | translate }}</p>
+                        <p class="value">{{ texture.name | translate }}</p>
+                    </div>
+                    <div class="table-body">
+                        <button (click)="textureModal = true">
+                            <img class="edit-icon" src="assets/img/edit-icon.png" />
+                        </button>
+                    </div>
+                </div>
+
+                <select-form-modal *ngIf="textureModal" (onBackgroundClick)="textureModal = false" (onSelect)="selectTexture($event)" [list]="textureList"></select-form-modal>
+
+                <div class="flex-column input-container">
+                    <div class="table-header flex-column">
+                        <p class="field cut-text">{{ 'RECIPE_MANAGEMENT.RECIPES_DETAIL.PORTION' | translate }}</p>
+                        <p class="value">{{ portion }}{{ 'UNIT.DEFAULT_UNIT_SIGLE' | translate }}</p>
+                    </div>
+                    <div class="table-body">
+                        <button (click)="portionModal = true">
+                            <img class="edit-icon" src="assets/img/edit-icon.png" />
+                        </button>
+                    </div>
+                </div>
+
+                <select-form-modal *ngIf="portionModal" (onBackgroundClick)="portionModal = false" (onSelect)="selectPortion($event)" [list]="portionList"></select-form-modal>
+
+                <div class="flex-column input-container">
+                    <div class="table-header flex-column">
+                        <p class="field cut-text">{{ 'RECIPE_MANAGEMENT.RECIPES_DETAIL.NB_PORTION' | translate }}</p>
+                        <p class="value">{{ nbPortion }}</p>
+                    </div>
+                    <div class="table-body">
+                        <button (click)="nbPortionModal = true">
+                            <img class="edit-icon" src="assets/img/edit-icon.png" />
+                        </button>
+                    </div>
+                </div>
+
+                <select-form-modal *ngIf="nbPortionModal" (onBackgroundClick)="nbPortionModal = false" (onSelect)="selectNbPortion($event)"
+                    [list]="nbPortionList"></select-form-modal>
+
+                <button style="display: none;" class="start-recipe-button">{{'RECIPE_MANAGEMENT.RECIPES_DETAIL.START_RECIPE' | translate}}</button>
+            </div>
+        </div>
+
+        <div class="recipe-steps">
+            <p class="title">{{ 'RECIPE_MANAGEMENT.RECIPES_DETAIL.STEP' | translate }}</p>
+            <div class="table flex-column">
+                <div class="div-row flex-row" *ngFor="let step of recipe.steps; let index = index;" [ngClass]="{'background': index%2=='0'}">
+                    <div class="border-top"></div>
+                    <p class="step-index">{{index + 1}}</p>
+                    <p class="step-label" *ngIf="recipe.status == 3 && step.stepCategory == 2">{{ 'RECIPE.BEABA_BAKING_TIME' | translate : { level: step.bakingLevel, minutes: step.bakingDuration } }}</p>
+                    <p class="step-label" *ngIf="recipe.status != 3 || step.stepCategory != 2">{{ step.freeInstruction | translate:{ingredient: step.ingredient? step.ingredient.name : null} }}</p>
+                </div>
+                <!-- <ion-row *ngFor="let step of recipe.steps; let index = index;" [ngClass]="{'background': index%2=='0'}">
+                    <div class="border-top"></div>
+                    <ion-col class="index" col-2>{{index + 1}}</ion-col>
+                    <ion-col class="step" col-10>
+                        <p style="padding-right:5px;">{{ step.freeInstruction | translate:{ingredient: step.ingredient? step.ingredient.name : null} }}</p>
+                    </ion-col>
+                </ion-row> -->
+            </div>
+        </div>
+
+        <div *ngIf="!perso && isConnected" class="recipe-comments">
+            <p class="comment-title">{{ 'RECIPE_MANAGEMENT.RECIPES_DETAIL.LET_COMMENT' | translate }}</p>
+            <textarea [formControl]="review" id="text-area" cols="5" placeholder="{{ 'RECIPE_MANAGEMENT.RECIPES_DETAIL.COMMENT_PLACEHOLDER' | translate }}"></textarea>
+            <p class="remaining-char">{{review.value.length}}/500</p>
+
+            <div class="comments">
+                <button [disabled]="!review.valid" (click)="addReview()" class="green-button">{{ 'RECIPE_MANAGEMENT.RECIPES_DETAIL.POST_REVIEW' | translate }}</button>
+                <!--<p class="reviews-management-subtitle">{{ 'RECIPE_MANAGEMENT.RECIPES_DETAIL.COMMENTS_RECIPE' | translate }}</p>-->
+                <div class="comment-container">
+                    <div class="comment" *ngFor="let review of reviews">
+                        <div class="comment-row flex-row">
+                            <div class="profil flex-column">
+                                <img class="profil-img" *ngIf="review.avatar" [src]="review.avatar" onerror="this.src = 'assets/img/profil-icon-green.png'">
+                                <img class="profil-img-default" *ngIf="!review.avatar" src="assets/img/profil-icon-green.png" onerror="this.src = 'assets/img/profil-icon-green.png'">
+                                <div class="parent-referent" *ngIf="review.isParentReferent">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 69.21 58.69"><title>areferent</title><g id="Layer_2" data-name="Layer 2"><g id="Calque_1" data-name="Calque 1"><path d="M58.39,40.11a7,7,0,0,0,2.41-.43c5.44-2,8.23-10.16,8.34-10.51A1.34,1.34,0,0,0,69,28a1.36,1.36,0,0,0-1-.61c-4.2-.36-7.62.33-10.2,2a35.41,35.41,0,0,0,.38-3.93h.07A6.87,6.87,0,0,0,63,23.68C67,20.08,66.59,12.36,66.57,12a1.35,1.35,0,0,0-1.8-1.2,14.81,14.81,0,0,0-7.33,5c-.18-.93-.36-1.67-.5-2.19a6.47,6.47,0,0,0,1.13-5C57.15,3.78,50.62.3,50.34.16a1.32,1.32,0,0,0-1.18,0A1.34,1.34,0,0,0,48.4,1c-1,4-.67,7.31,1,9.88a9.51,9.51,0,0,0,5.09,3.9,38.28,38.28,0,0,1,1,7.12,23.77,23.77,0,0,0-7.59-5.53,1.35,1.35,0,0,0-1.71,1c-.93,4.83-.34,8.77,1.73,11.71a11.1,11.1,0,0,0,6.25,4.28,58.31,58.31,0,0,1-2.58,6C50.44,34,44.69,29.25,44.42,29a1.35,1.35,0,0,0-1.16-.28,1.39,1.39,0,0,0-.92.75c-2.14,4.6-2.56,8.71-1.23,12.21A11.57,11.57,0,0,0,45.22,47a35.15,35.15,0,0,1-6.15,4.19,7.37,7.37,0,0,0,.68-3c0-4.23-4.14-7.47-4.31-7.61a1.35,1.35,0,0,0-1.66,0c-.17.14-4.31,3.38-4.31,7.61a7.59,7.59,0,0,0,.68,3A36.49,36.49,0,0,1,24,47a11.61,11.61,0,0,0,4.11-5.29c1.32-3.5.91-7.6-1.24-12.2a1.34,1.34,0,0,0-.92-.75,1.38,1.38,0,0,0-1.16.27c-.27.23-6,5-7.12,10.44a59.31,59.31,0,0,1-2.58-6,11.21,11.21,0,0,0,6.24-4.29c2.07-2.94,2.65-6.88,1.72-11.71a1.33,1.33,0,0,0-.62-.9,1.35,1.35,0,0,0-1.09-.14,23.89,23.89,0,0,0-7.59,5.53,39.31,39.31,0,0,1,1-7.12,9.51,9.51,0,0,0,5.09-3.9C21.47,8.35,21.78,5,20.79,1A1.34,1.34,0,0,0,20,.13a1.32,1.32,0,0,0-1.18,0c-.28.14-6.8,3.63-7.72,8.55a6.45,6.45,0,0,0,1.13,5c-.13.52-.31,1.27-.49,2.19a14.84,14.84,0,0,0-7.34-5,1.35,1.35,0,0,0-1.8,1.2c0,.33-.37,8.05,3.55,11.65A6.85,6.85,0,0,0,11,25.52h.07a35.47,35.47,0,0,0,.38,3.92c-2.58-1.71-6-2.39-10.19-2a1.36,1.36,0,0,0-1,.61,1.35,1.35,0,0,0-.15,1.17C.19,29.54,3,37.74,8.42,39.7a7.19,7.19,0,0,0,2.41.42,7.92,7.92,0,0,0,3.62-.93c.37.74,2.21,3.76,2.76,4.51-3.12-.45-7.16.17-12.18,3.22A1.34,1.34,0,0,0,4.77,49c.29.3,7,7,13.54,7,.33,0,.66,0,1-.05a9,9,0,0,0,6.57-4.24A42.34,42.34,0,0,0,31,54.64c-1.54.51-3.14,1-4.82,1.38a1.35,1.35,0,0,0,.32,2.67,1.86,1.86,0,0,0,.33,0,64.36,64.36,0,0,0,7.8-2.44,63.34,63.34,0,0,0,7.81,2.43,1.24,1.24,0,0,0,.33,0A1.35,1.35,0,0,0,43.07,56c-1.68-.42-3.28-.87-4.82-1.38a41.8,41.8,0,0,0,5.11-2.88A8.92,8.92,0,0,0,49.93,56c.33,0,.66,0,1,0,6.58,0,13.24-6.75,13.54-7a1.4,1.4,0,0,0,.37-1.12,1.35,1.35,0,0,0-.64-1c-5-3-9.06-3.66-12.18-3.22.55-.74,2.39-3.76,2.75-4.5a8,8,0,0,0,3.63.93Zm5.45-26c-.16,2.41-.79,5.85-2.64,7.55a4.24,4.24,0,0,1-3,1.11c-.22-1.8,0-5.94,5.61-8.66ZM58.11,32.63A11.49,11.49,0,0,1,65.85,30h.06c-1.12,2.5-3.27,6.14-6,7.14A4.75,4.75,0,0,1,56,36.76c0-.25.86-3.06,2.14-4.13ZM54.78,12l0,0a6.73,6.73,0,0,1-3.11-2.58,8.67,8.67,0,0,1-1-6C52.53,4.81,55,7,55.41,9.2A3.78,3.78,0,0,1,54.78,12ZM11,22.81a4.18,4.18,0,0,1-3-1.1C6.15,20,5.52,16.57,5.36,14.16,11,16.87,11.2,21,11,22.81ZM9.34,37.16c-2.75-1-4.91-4.64-6-7.14h0c3.38,0,6,.88,7.75,2.63a7.56,7.56,0,0,1,1.71,2.6c.07.2.39,1.28.42,1.52a4.73,4.73,0,0,1-3.9.39ZM13.79,9.22c.42-2.26,2.87-4.4,4.74-5.69a8.78,8.78,0,0,1-1,5.92,6.7,6.7,0,0,1-3.14,2.61h0a3.74,3.74,0,0,1-.64-2.83Zm.32,17.56c.58-3,4.17-5.57,6.57-7,.34,3.21-.17,5.83-1.54,7.78a8.35,8.35,0,0,1-4.26,3.12,6,6,0,0,1-.77-3.91ZM19,53.32c-4.09.45-8.77-3.06-11-5,3.93-2.06,7.4-2.43,10.48-1.57a10.81,10.81,0,0,1,4.93,3.76A6.14,6.14,0,0,1,19,53.32Zm3-8.21a6.15,6.15,0,0,1-1.78-3.79c-.12-3.44,3.09-7.08,5-8.94,1.18,3.17,1.33,6,.45,8.34A9.15,9.15,0,0,1,22,45.11Zm12.65,7.77c-1-1-2.44-2.78-2.44-4.71s1.46-3.75,2.43-4.72c1,1,2.43,2.77,2.43,4.72s-1.46,3.74-2.42,4.71Zm9-12.17c-.88-2.36-.73-5.16.45-8.34,1.87,1.86,5,5.49,5,8.94a5,5,0,0,1-1.44,3.44l-.17.18-.17.17a9.15,9.15,0,0,1-3.63-4.39Zm17.6,7.61c-2.54,2.2-7.17,5.41-11,5a6.15,6.15,0,0,1-4.43-2.78,13.19,13.19,0,0,1,4.93-3.77c3-1,6.56-.49,10.5,1.56ZM50.09,27.6c-1.38-2-1.9-4.59-1.56-7.82,2.4,1.42,5.82,4,6.57,7a6.52,6.52,0,0,1-.77,3.91,8.31,8.31,0,0,1-4.24-3.08Z"/></g></g></svg>
+                                </div>
+                                <p class="name cut-text">{{review.user}}</p>
+                                <img class="star-img" *ngIf="review.favorite" src="assets/img/fav-star-green.png">
+                                <p class="star-text" *ngIf="review.favorite">{{ 'RECIPE_MANAGEMENT.RECIPES_DETAIL.FAVORITE' | translate }}</p>
+
+                            </div>
+                            <div class="comment-text">
+                                <p>{{review.comment}}</p>
+                            </div>
+                            <button *ngIf=" authService.user && ( review.user==authService.user.username || authService.isModerator() )" class="delete-review-button" (click)="removeReview(review.id)">
+                                <img class="delete-review-icon" src="assets/img/cross.png">
+                            </button>
+                        </div>
+                        <div class="separator"></div>
+                    </div>
+                </div>
+                <button class="green-button">{{ 'RECIPE_MANAGEMENT.RECIPES_DETAIL.SHOW_MORE' | translate }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<share-modal *ngIf="showShareModal" (onClose)="onShareClose($event)" [recipeName]="recipe.name" [recipeImageUrl]="recipe.imageUrl"
+    [currentUrl]="currentURL"></share-modal>

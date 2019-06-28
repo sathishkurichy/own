@@ -1,0 +1,306 @@
+<div id="cookies-modale" *ngIf="cookieAccepted != 'true' && runInBrowser">
+    <div class="cookies-container">
+        <p>{{'COOKIE.HEADBAND_INFORMATIONS' | translate}}</p>
+        <button (click)="cookieOk()">{{'BEABA_MODAL_COMPONENT.OK_BUTTON' | translate}}</button>
+        <!--<button (click)="cookieKnowMore()">{{'COOKIE.HEADBAND_KNOW_MORE' | translate}}</button>-->
+      <button><a href={{politiqueUrl}}>{{'COOKIE.HEADBAND_KNOW_MORE' | translate}}</a></button>
+    </div>
+</div>
+<div class="header-shop-beaba">
+    <img src="https://shop.beaba.com/img/fr-logo-15319306571.jpg" />
+    <div class="shop" (click)="openLink('https://shop.beaba.com/fr/points-de-vente')">
+        <fa-icon id="faMapMarkerAlt" [icon]="faMapMarkerAlt" size="3x"></fa-icon>
+        <label (mouseenter)="changeStateIcon(true, 'faMapMarkerAlt')"  (mouseleave)="changeStateIcon(false, 'faMapMarkerAlt')">
+            Points de vente
+        </label>
+    </div>
+    <div class="account" (click)="openShop()">
+        <fa-icon id="faUserAlt" [icon]="faUserAlt" size="3x"></fa-icon>
+        <label (mouseenter) ="changeStateIcon(true, 'faUserAlt')"  (mouseleave)="changeStateIcon(false, 'faUserAlt')">
+            Mon compte
+        </label>
+    </div>
+    <div class="language" (mouseenter) ="changeStateLanguage(true)" (mouseleave)="changeStateLanguage(false)">
+        <span>fr</span>
+        <fa-icon [icon]="faChevronDown"></fa-icon>
+        <ul id="select-language" class="hide" (mouseenter)="changeStateLanguage(true)" (mouseleave)="changeStateLanguage(false)">
+            <li>fr</li>
+        </ul>
+    </div>
+</div>
+<div class="header-menu-shop-beaba">
+    <div class="inline">
+        <button (mouseenter)="changeStateMenu(1, true)" (mouseleave)="changeStateMenu(1, false)">
+            LE REPAS
+            <fa-icon [icon]="faCaretDown"></fa-icon>
+        </button>
+        <div id="subMenu1" class="hide" (mouseenter)="changeStateMenu(1, true)" (mouseleave)="changeStateMenu(1, false)">
+            <div class="inline">
+                <label class="subMenuLabel" (click)="openLink('https://shop.beaba.com/fr/9-le-babycook-et-accessoires')">
+                    Le babycook et accessoires
+                </label>
+                <img (click)="openLink('https://shop.beaba.com/fr/9-le-babycook-et-accessoires')" src="https://shop.beaba.com/img/cms/Babycooketaccesoire2.png" />
+            </div>
+            <div class="inline">
+                <label class="subMenuLabel" (click)="openLink('https://shop.beaba.com/fr/8-l-apprentissage')">
+                    L'apprentissage
+                </label>
+                <img (click)="openLink('https://shop.beaba.com/fr/8-l-apprentissage')" src="https://shop.beaba.com/img/cms/apprentissage.jpg" />
+            </div>
+            <div class="inline">
+                <label class="subMenuLabel" (click)="openLink('https://shop.beaba.com/fr/4-la-biberonnerie')">
+                    La bibironnerie
+                </label>
+                <img (click)="openLink('https://shop.beaba.com/fr/4-la-biberonnerie')" src="https://shop.beaba.com/img/cms/Biberonnerie.png" />
+            </div>
+            <div class="inline last-submenu-1">
+                <label class="subMenuLabel" (click)="openLink('https://shop.beaba.com/fr/254-chaise-haute')">
+                    Chaise haute
+                </label>
+                <img (click)="openLink('https://shop.beaba.com/fr/254-chaise-haute')" src="https://shop.beaba.com/img/cms/chaisehaut.jpg" />
+            </div>
+        </div>
+    </div>
+    <div class="inline">
+        <button (mouseenter)="changeStateMenu(2, true)" (mouseleave)="changeStateMenu(2, false)">
+            LA MAISON
+            <fa-icon [icon]="faCaretDown"></fa-icon>
+        </button>
+        <div id="subMenu2" class="hide" (mouseenter)="changeStateMenu(2, true)" (mouseleave)="changeStateMenu(2, false)">
+            <div class="inline">
+                <label class="subMenuLabel" (click)="openLink('https://shop.beaba.com/fr/18-la-toilette')">
+                    La toilette
+                </label>
+                <img (click)="openLink('https://shop.beaba.com/fr/18-la-toilette')" src="https://shop.beaba.com/img/cms/toilette2.png" />
+            </div>
+            <div class="inline">
+                <label class="subMenuLabel" (click)="openLink('https://shop.beaba.com/fr/19-le-soin')">
+                    Le soin
+                </label>
+                <img (click)="openLink('https://shop.beaba.com/fr/19-le-soin')" src="https://shop.beaba.com/img/cms/soin.png" />
+            </div>
+            <div class="inline">
+                <label class="subMenuLabel" (click)="openLink('https://shop.beaba.com/fr/32-le-confort')">
+                    Le confort
+                </label>
+                <img (click)="openLink('https://shop.beaba.com/fr/32-le-confort')" src="https://shop.beaba.com/img/cms/Confort.png" />
+            </div>
+            <div class="inline last-submenu-2">
+                <label class="subMenuLabel" (click)="openLink('https://shop.beaba.com/fr/33-la-securite')">
+                    La sécurité
+                </label>
+                <img (click)="openLink('https://shop.beaba.com/fr/33-la-securite')" src="https://shop.beaba.com/img/cms/securite.png" />
+            </div>
+        </div>
+    </div>
+    <div class="inline">
+        <button (mouseenter)="changeStateMenu(3, true)" (mouseleave)="changeStateMenu(3, false)">
+            LES SORTIES
+            <fa-icon [icon]="faCaretDown"></fa-icon>
+        </button>
+        <div id="subMenu3" class="hide" (mouseenter)="changeStateMenu(3, true)" (mouseleave)="changeStateMenu(3, false)">
+            <div class="inline">
+                <label class="subMenuLabel" (click)="openLink('https://shop.beaba.com/fr/50-la-bagagerie')">
+                    La bagagerie
+                </label>
+                <img (click)="openLink('https://shop.beaba.com/fr/50-la-bagagerie')" src="https://shop.beaba.com/img/cms/Bagagerie.png" />
+            </div>
+            <div class="inline">
+                <label class="subMenuLabel" (click)="openLink('https://shop.beaba.com/fr/51-la-protection-solaire')">
+                    La protection solaire
+                </label>
+                <img (click)="openLink('https://shop.beaba.com/fr/51-la-protection-solaire')" src="https://shop.beaba.com/img/cms/Protection.png" />
+            </div>
+            <div class="inline last-submenu-3">
+                <label class="subMenuLabel" (click)="openLink('https://shop.beaba.com/fr/257-siege-rehausseur-mifold')">
+                    Siege rehausseur Mifold
+                </label>
+                <img (click)="openLink('https://shop.beaba.com/fr/257-siege-rehausseur-mifold')" src="https://shop.beaba.com/img/cms/Siege.png" />
+            </div>
+        </div>
+    </div>
+    <div class="inline">
+        <button (mouseenter)="changeStateMenu(4, true)" (mouseleave)="changeStateMenu(4, false)">
+            PIECES DETACHEES
+            <fa-icon [icon]="faCaretDown"></fa-icon>
+        </button>
+        <div id="subMenu4" class="hide" (mouseenter)="changeStateMenu(4, true)" (mouseleave)="changeStateMenu(4, false)">
+            <ul class="inline list-sub-menu">
+                <li (click)="openLink('https://shop.beaba.com/fr/234-babycook-original')">Babycook original</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/251-babycook-original-plus')">Babycook Original Plus</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/235-babycook-solo')">Babycook solo</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/236-babycook-duo')">Babycook duo</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/293-babycook-macarons')">Babycook Macarons</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/298-babycook-neo')">Babycook Néo</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/245-bib-expresso')">Bib'expresso</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/237-bib-secondes')">Bib'secondes</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/238-bib-bain-marie')">Bib'bain marie</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/240-tomydoo')">Tomydoo</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/248-bento-box-ellipse')">Bento Box Ellipse</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/250-tasse-ellipse-evoluclip-3-en-1')">Tasse Ellipse Evoluclip 3 en 1</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/289-babymilk')">Babymilk</li>
+            </ul>
+            <ul class="inline list-sub-menu">
+                <li (click)="openLink('https://shop.beaba.com/fr/290-minicall')">Minicall</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/241-bib-ballidoo')">Ballidoo</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/242-classidoo')">Classidoo</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/243-baignoire-cameleo')">Baignoire Caméléo</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/252-plan-a-langer-cameleo')">Plan à langer Caméléo</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/239-stabilange')">Stabilange</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/244-transat-up-down')">Transat up & down</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/246-transatdo')">Transatdo</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/253-transatdo-ii')">Transatdo II</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/247-rehausseur-de-voyage')">Réhausseur de voyage</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/249-sac-a-langer')">Sac à langer</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/291-veilleuses-pixie')">Veilleuses Pixie</li>
+            </ul>
+        </div>
+    </div>
+    <button (click)="openLink('https://shop.beaba.com/fr/256-offres-promo')">
+        OFFRE PROMO
+    </button>
+    <button (click)="openLink('https://shop.beaba.com/fr/content/31-beaba-nutrition')">
+        BEABA NUTRITION
+    </button>
+</div>
+<div class="main-header">
+    <div class="recipe-tabs flex-row max-width">
+        <button (click)="navigate('recipes/all')" class="recipe-tab flex-box" [ngClass]="{selected: selectedTabIndex == 0}">
+            <p>{{ 'RECIPE_MANAGEMENT.RECIPE_LIST.ALL_RECIPES' | translate }}</p>
+        </button>
+        <button (click)="navigate('recipes/favorite')" class="recipe-tab flex-box" [ngClass]="{selected: selectedTabIndex == 1}">
+            <p>{{ 'RECIPE_MANAGEMENT.RECIPE_LIST.MY_FAVORITE' | translate }}</p>
+        </button>
+        <button (click)="navigate('recipes/personnal')" class="recipe-tab flex-box" [ngClass]="{selected: selectedTabIndex == 2}">
+            <p>{{ 'RECIPE_MANAGEMENT.RECIPE_LIST.MY_RECIPE' | translate }}</p>
+        </button>
+        <button (click)="navigate('sav')" class="recipe-tab flex-box" [ngClass]="{selected: selectedTabIndex == 3}" *ngIf="isSAV()">
+            <p>{{ 'WEBSITE.COMMON.SAV' | translate }}</p>
+        </button>
+        <button (click)="navigate('users')" class="recipe-tab flex-box" [ngClass]="{selected: selectedTabIndex == 4}" *ngIf="isAdmin()">
+            <p>{{ 'RECIPE_MANAGEMENT.RECIPE_LIST.USERS' | translate }}</p>
+        </button>
+        <button (click)="navigate('reviews-management')" class="recipe-tab flex-box" [ngClass]="{selected: selectedTabIndex == 5}" *ngIf="isModerator()">
+            <p>{{ 'WEBSITE.COMMON.REVIEWS_MANAGEMENT' | translate }}</p>
+        </button>
+        <button (click)="navigate('recipes-management')" class="recipe-tab flex-box" [ngClass]="{selected: selectedTabIndex == 6}" *ngIf="isAdmin() || isTranslator()">
+            <p>{{ 'WEBSITE.COMMON.RECIPE_MANAGEMENT' | translate }}</p>
+        </button>
+        <button (click)="logout()" class="recipe-tab flex-box" *ngIf="isLogged()">
+            <p>{{ 'WEBSITE.COMMON.DISCONNECT' | translate }}</p>
+        </button>
+    </div>
+</div>
+<div class="header-menu-shop-beaba-mobile">
+    <div class="recipe-tabs-mobile" [hidden]="!menuIsDisplay">
+        <button class="recipe-tab" (click)="changeStateHeaderMobile(1)">
+            <p>Le Repas</p>
+        </button>
+        <div class="subMenuMobile1" *ngIf="showSubMenuMobile1 === true">
+            <ul>
+                <li (click)="openLink('https://shop.beaba.com/fr/9-le-babycook-et-accessoires')">Le babycook et accessoires</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/8-l-apprentissage')">L'apprentissage</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/4-la-biberonnerie')">La bibironnerie</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/254-chaise-haute')">Chaise haute</li>
+            </ul>                
+        </div>
+        <button class="recipe-tab" (click)="changeStateHeaderMobile(2)">
+            <p>La maison</p>
+        </button>
+        <div class="subMenuMobile2" *ngIf="showSubMenuMobile2 === true">
+            <ul>
+                <li (click)="openLink('https://shop.beaba.com/fr/18-la-toilette')">La toilette</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/19-le-soin')">Le soin</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/32-le-confort')">Le confort</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/33-la-securite')">La sécurité</li>
+            </ul>
+        </div>
+        <button class="recipe-tab" (click)="changeStateHeaderMobile(3)">
+            <p>Les sorties</p>
+        </button>
+        <div class="subMenuMobile3" *ngIf="showSubMenuMobile3 === true">
+            <ul>
+                <li (click)="openLink('https://shop.beaba.com/fr/50-la-bagagerie')">La bagagerie</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/51-la-protection-solaire')">La protection solaire</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/257-siege-rehausseur-mifold')">Siege rehausseur Mifold</li>
+            </ul>    
+        </div>
+        <button class="recipe-tab" (click)="changeStateHeaderMobile(4)">
+            <p>Pièces détachées</p>
+        </button>
+        <div class="subMenuMobile4" *ngIf="showSubMenuMobile4 === true">
+            <ul>
+                <li (click)="openLink('https://shop.beaba.com/fr/234-babycook-original')">Babycook original</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/251-babycook-original-plus')">Babycook Original Plus</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/235-babycook-solo')">Babycook solo</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/236-babycook-duo')">Babycook duo</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/293-babycook-macarons')">Babycook Macarons</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/298-babycook-neo')">Babycook Néo</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/245-bib-expresso')">Bib'expresso</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/237-bib-secondes')">Bib'secondes</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/238-bib-bain-marie')">Bib'bain marie</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/240-tomydoo')">Tomydoo</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/248-bento-box-ellipse')">Bento Box Ellipse</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/250-tasse-ellipse-evoluclip-3-en-1')">Tasse Ellipse Evoluclip 3 en 1</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/289-babymilk')">Babymilk</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/290-minicall')">Minicall</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/241-bib-ballidoo')">Ballidoo</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/242-classidoo')">Classidoo</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/243-baignoire-cameleo')">Baignoire Caméléo</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/252-plan-a-langer-cameleo')">Plan à langer Caméléo</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/239-stabilange')">Stabilange</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/244-transat-up-down')">Transat up & down</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/246-transatdo')">Transatdo</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/253-transatdo-ii')">Transatdo II</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/247-rehausseur-de-voyage')">Réhausseur de voyage</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/249-sac-a-langer')">Sac à langer</li>
+                <li (click)="openLink('https://shop.beaba.com/fr/291-veilleuses-pixie')">Veilleuses Pixie</li>
+            </ul>
+        </div>
+        <button class="recipe-tab" (click)="openLink('https://shop.beaba.com/fr/256-offres-promo')">
+            <p>Offres promotionnelles</p>
+        </button>
+        <button class="recipe-tab" (click)="openLink('https://shop.beaba.com/fr/content/31-beaba-nutrition')">
+            <p>Béaba Nutrition</p>
+        </button>
+    </div>
+</div>
+<div class="main-header-mobile">
+    <div class="header-bar">
+        <button class="menu-toggle-button" (click)="menuIsDisplay = !menuIsDisplay">
+            <fa-icon [icon]="faBars" size="2x"></fa-icon>
+        </button>
+    </div>
+
+    <div class="recipe-tabs-mobile" [hidden]="!menuIsDisplay">
+        <button (click)="navigate('recipes/all')" class="recipe-tab" [ngClass]="{selected: selectedTabIndex == 0}">
+            <p>{{ 'RECIPE_MANAGEMENT.RECIPE_LIST.ALL_RECIPES' | translate }}</p>
+        </button>
+        <button (click)="navigate('recipes/favorite')" class="recipe-tab" [ngClass]="{selected: selectedTabIndex == 1}">
+            <p>{{ 'RECIPE_MANAGEMENT.RECIPE_LIST.MY_FAVORITE' | translate }}</p>
+        </button>
+        <button (click)="navigate('recipes/personnal')" class="recipe-tab" [ngClass]="{selected: selectedTabIndex == 2}">
+            <p>{{ 'RECIPE_MANAGEMENT.RECIPE_LIST.MY_RECIPE' | translate }}</p>
+        </button>
+        <button (click)="navigate('sav')" class="recipe-tab flex-box" [ngClass]="{selected: selectedTabIndex == 3}" *ngIf="isSAV()">
+            <p>{{ 'WEBSITE.COMMON.SAV' | translate }}</p>
+        </button>
+        <button (click)="navigate('users')" class="recipe-tab" [ngClass]="{selected: selectedTabIndex == 4}" *ngIf="isAdmin()">
+            <p>{{ 'RECIPE_MANAGEMENT.RECIPE_LIST.USERS' | translate }}</p>
+        </button>
+        <button (click)="navigate('reviews-management')" class="recipe-tab" [ngClass]="{selected: selectedTabIndex == 5}" *ngIf="isModerator()">
+            <p>{{ 'WEBSITE.COMMON.REVIEWS_MANAGEMENT' | translate }}</p>
+        </button>
+        <button (click)="navigate('recipes-management')" class="recipe-tab" [ngClass]="{selected: selectedTabIndex == 6}" *ngIf="isAdmin() || isTranslator()">
+            <p>{{ 'WEBSITE.COMMON.RECIPE_MANAGEMENT' | translate }}</p>
+        </button>
+        <!-- <button (click)="switchLanguage()" class="recipe-tab">
+            <ion-icon style="font-size: 2.5em; color: white;" name="settings"></ion-icon>
+            <p>LANGUAGE</p>
+        </button> -->
+        <button (click)="logout()" class="recipe-tab" *ngIf="isLogged()">
+            <p>{{ 'WEBSITE.COMMON.DISCONNECT' | translate }}</p>
+        </button>
+    </div>
+</div>
+<router-outlet></router-outlet>

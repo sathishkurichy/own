@@ -1,0 +1,21 @@
+@import "../../../sass/styles.scss";
+// @import "../../domains/SharedKernel/components/recipe-item-component/recipe-item-component.scss";
+:host {
+    .favorite-recipe-page {
+        background-color: $VERY_LIGHT_GRAY_BACKGROUND;
+        min-height: $WEBSITE-BODY;
+        width: 100%;
+    }
+    .no-favs {
+        padding-top: 90px;
+        p {
+            font-size: 2em;
+            columns: $GRAY;
+        }
+    }
+    .all-recipe-body {
+        background-color: $VERY_LIGHT_GRAY_BACKGROUND;
+        min-height: calc(100vh - 84px);
+        width: 100%;
+    }
+}

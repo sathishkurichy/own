@@ -1,0 +1,63 @@
+@import "~sass/styles.scss";
+* {
+    color: $WHITE!important;
+}
+:host {
+
+    #sharesbnt {
+        color: white !important;
+    }
+
+    .share-title {
+        color: $GRAY !important;
+    }
+
+    .background {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        height: 100vh;
+        width: 100vw;
+        background-color: rgba(0, 0, 0, 0.25);
+        z-index: 10;
+    }
+    .share-modal {
+        color: $WHITE !important;
+        position: fixed;
+        top: 35vh;
+        left: 35vw;
+        background-color: $WHITE;
+        height: 30vh;
+        width: 30vw;
+        min-width: 400px;
+        border-radius: $BORDER_RADIUS;
+        z-index: 15;
+        justify-content: space-evenly;
+        .sb-group .sb-default {
+            width: 100%;
+            color: $WHITE !important;
+        }
+        p {
+            padding: 15px;
+            text-align: center;
+        }
+        .flex-row {
+            justify-content: space-evenly;
+            height: 60px;
+            width: 100%;
+            button {
+                height: 40px;
+                width: 150px;
+                text-align: center;
+                border-radius: $BORDER_RADIUS;
+                color: $WHITE;
+            }
+            .nope {
+                background-color: $RED_BEABA;
+            }
+            .submit {
+                background-color: $GREEN_BEABA;
+            }
+        }
+    }
+}

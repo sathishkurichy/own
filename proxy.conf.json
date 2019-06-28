@@ -1,0 +1,6 @@
+{
+  "/keycloak/*": {
+    "target": "https://auth.beaba.com/",
+    "secure": true
+  }
+}
