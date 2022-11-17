@@ -63,7 +63,7 @@
         "angular-webstorage-service": "^1.0.2"
     },
     "devDependencies": {
-        "@angular/cli": "^1.7.4",
+        "@angular/cli": "^15.0.0",
         "@angular/compiler-cli": "^5.2.10",
         "@angular/language-service": "^5.2.10",
         "@types/jasmine": "^2.8.7",
